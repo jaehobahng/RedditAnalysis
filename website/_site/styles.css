@@ -1,0 +1,52 @@
+/* css styles */
+/* Set the background color for the entire website */
+body {
+    background-color: #e7f6ef; /* Minty green color */
+}
+
+/* Optional: Style the text for better readability on minty green */
+body {
+    color: #333; /* Dark text color for contrast */
+    font-family: Arial, sans-serif; /* Set a readable font */
+}
+
+/* Optional: Customize links for better visibility */
+a {
+    color: #037a72; /* Blue color for links */
+}
+
+a:hover {
+    color: #037a72; /* Darker blue on hover */
+}
+
+/* Side-bar
+
+/* Change the background color of the sidebar */
+
+/* .sidebar {
+    background-color: #c7ddc4 !important; 
+}
+
+.sidebar-header {
+    color: #3c563c !important;  
+}
+
+.sidebar a:hover {
+    color: #3c563c !important;  
+} */
+
+/* Small button */
+
+.small-button {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: #8fae90;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .small-button:hover {
+    background-color: #8fae90;
+  }

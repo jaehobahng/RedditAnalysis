@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Project Team 27 – eda</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Project Team 27</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./secondary/code_data.html" rel="" target="">
+ <span class="menu-text">Code and Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./secondary/authors.html" rel="" target="">
+ <span class="menu-text">Authors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./secondary/references.html" rel="" target="">
+ <span class="menu-text">References</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./EDA.html">Exploratory Data Analysis</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./EDA.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Exploratory Data Analysis</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NLP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NLP</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link active" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#external-data-dear-abbys" id="toc-external-data-dear-abbys" class="nav-link" data-scroll-target="#external-data-dear-abbys">External Data: Dear Abby’s</a>
+  <ul class="collapse">
+  <li><a href="#time-distribution-of-the-questions" id="toc-time-distribution-of-the-questions" class="nav-link" data-scroll-target="#time-distribution-of-the-questions">Time distribution of the questions</a></li>
+  <li><a href="#topic-analysis" id="toc-topic-analysis" class="nav-link" data-scroll-target="#topic-analysis">Topic Analysis</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="exploratory-data-analysis" class="level1">
+<h1>Exploratory Data Analysis</h1>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>SUMMARIZE THE WHOLE PAGE: CHATGPT</p>
+<section id="external-data-dear-abbys" class="level2">
+<h2 class="anchored" data-anchor-id="external-data-dear-abbys">External Data: <a href="https://www.kaggle.com/datasets/thedevastator/american-anxieties-dear-abby-s-questions">Dear Abby’s</a></h2>
+<p>This dataset is a collection of 20,000 questions addressed to the advice columnist “Dear Abby”, which implemented by The Pudding essay titled <a href="https://pudding.cool/2018/11/dearabby/">30 Years of American Anxieties: What 20,000 letters to an advice columnist tell us about what—and who—concerns us most</a>, published in November 2018. The dataset provides valuable insights into American anxieties and concerns from the mid-1980s to 2017, as stated in the Introduction section.</p>
+<section id="time-distribution-of-the-questions" class="level3">
+<h3 class="anchored" data-anchor-id="time-distribution-of-the-questions">Time distribution of the questions</h3>
+<p>The distribution of the number of questions submitted to the “Dear Abby” column over the years shows that, apart from 1985, which recorded over 1,000 posts, the number of posts in subsequent years generally ranges between 400 and 800 annually.</p>
+<div style="text-align: right;">
+<p><button onclick="downloadImage()" class="small-button">Download Image</button></p>
+</div>
+<script>
+function downloadImage() {
+  const link = document.createElement('a');
+  link.href = 'images/dear_abby_p1.png';
+  link.download = 'dear_abby_plot.png';
+  link.click();
+}
+</script>
+<div style="text-align: right;">
+<p><button onclick="sourceCode()" class="small-button">Source Code</button></p>
+</div>
+<script>
+function sourceCode() {
+  const link = document.createElement('a');
+  link.href = "https://github.com/gu-dsan6000/fall-2024-project-team-27/blob/main/code/dear_abby_eda.ipynb";
+  link.target = "_blank";  // Opens the link in a new tab
+  link.click();
+}
+</script>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/eda/dear_abby_p1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">figure: Number of questions posted on “Dear Abby” column each year</figcaption>
+</figure>
+</div>
+<p>Additionally, when we examine the number of posts aggregated by month across all years, the volume of posts remains relatively consistent each month. This suggests that there is no specific time of year when people are notably more likely to seek advice or report struggles.</p>
+<div style="text-align: right;">
+<p><button onclick="downloadImage()" class="small-button">Download Image</button></p>
+</div>
+<script>
+function downloadImage() {
+  const link = document.createElement('a');
+  link.href = 'images/dear_abby_p2.png';
+  link.download = 'dear_abby_plot.png';
+  link.click();
+}
+</script>
+<div style="text-align: right;">
+<p><button onclick="sourceCode()" class="small-button">Source Code</button></p>
+</div>
+<script>
+function sourceCode() {
+  const link = document.createElement('a');
+  link.href = "https://github.com/gu-dsan6000/fall-2024-project-team-27/blob/main/code/dear_abby_eda.ipynb";
+  link.target = "_blank";  // Opens the link in a new tab
+  link.click();
+}
+</script>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/eda/dear_abby_p2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">figure: Number of questions posted on “Dear Abby” column each month across all years</figcaption>
+</figure>
+</div>
+</section>
+<section id="topic-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="topic-analysis">Topic Analysis</h3>
+<p>Since the external dataset contains a wider range of time when the questions were raised, the change of the topics of the questions is worth noting itself, before we merge the external data with the reddit dataset. But first, it’s necessary to get a sense of how many topics are most discussed by people across all years. The visualization below used <a href="https://pypi.org/project/gensim/">gensim</a> and <a href="https://pypi.org/project/pyLDAvis/">pyLDAvis</a> to visualize the topics of all the questions posted on Dear Abby’s from year 1985 to 2017.</p>
+<p><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/bmabey/pyLDAvis@3.4.0/pyLDAvis/js/ldavis.v1.0.0.css"></p>
+<div id="ldavis_el78171404288134550246423385911" style="width: 100%; height: 75vh; max-width: 500px; margin: auto; background-color:white;">
+
+</div>
+
+<script type="text/javascript">
+
+var ldavis_el78171404288134550246423385911_data = {"mdsDat": {"x": [-0.0834247599751178, 0.06902232314194427, 0.014402436833173538], "y": [-0.030020417069833463, -0.05376820508844593, 0.08378862215827938], "topics": [1, 2, 3], "cluster": [1, 1, 1], "Freq": [35.79054312156719, 39.16138970614153, 25.048067172291283]}, "tinfo": {"Term": ["years", "child", "school", "would", "divorce", "marriage", "woman", "mother", "married", "since", "teach", "father", "college", "friend", "people", "check", "think", "short", "couple", "life", "person", "company", "together", "problem", "spend", "place", "without", "sperm", "speak", "party", "check", "sperm", "pound", "tire", "offend", "shirt", "volunteer", "patient", "lesson", "sleeping", "grandma", "roommate", "behavior", "regard", "cigarette", "birthday", "truth", "kitchen", "linda", "chore", "rescue", "dance", "strong", "beauty", "adorable", "peer", "ponytail", "ultimatum", "running", "booklet", "embarrass", "respect", "sorry", "sleep", "include", "serve", "ahead", "either", "ask", "friend", "better", "would", "problem", "please", "happen", "upset", "concern", "always", "think", "family", "husband", "people", "write", "wrong", "around", "every", "friendship", "money", "point", "right", "never", "daughter", "could", "want", "little", "child", "father", "worry", "going", "still", "wedding", "years", "parent", "early", "possible", "happily", "safety", "watch", "settle", "hurting", "since", "life", "communicate", "counseling", "find", "gathering", "civil", "employee", "college", "barbara", "discus", "circumstances", "council", "locate", "daddy", "ricky", "chance", "junior", "relief", "pregnancy", "commit", "theater", "swear", "danny", "found", "marriage", "texas", "already", "child", "married", "together", "everything", "phone", "decision", "father", "change", "question", "spend", "woman", "something", "party", "answer", "mother", "know", "years", "looking", "three", "love", "want", "boyfriend", "wedding", "need", "daughter", "without", "would", "parent", "husband", "family", "still", "month", "never", "friend", "first", "short", "unable", "alexis", "stranger", "beginning", "teach", "derby", "digit", "avoid", "recipe", "sitting", "critical", "jennie", "depression", "mental", "human", "scout", "temperature", "massage", "determination", "reluctant", "hand", "discuss", "friday", "select", "larger", "associate", "johnson", "postal", "amelia", "company", "rings", "remove", "school", "divorce", "speak", "place", "years", "couple", "column", "person", "week", "reader", "retire", "people", "think", "mother", "parent", "could", "husband", "without", "right", "consider", "woman", "never", "alone", "situation", "getting", "become", "times", "going", "house", "dinner", "friend", "recently", "three", "please", "married", "child", "would"], "Freq": [82.0, 72.0, 21.0, 87.0, 28.0, 28.0, 62.0, 57.0, 42.0, 15.0, 7.0, 39.0, 14.0, 65.0, 32.0, 8.0, 45.0, 5.0, 16.0, 11.0, 18.0, 10.0, 25.0, 33.0, 16.0, 13.0, 30.0, 6.0, 9.0, 16.0, 7.7832335914136435, 6.311569048889492, 5.5636913864313176, 4.805796606303486, 4.757379823486559, 4.0482150217708845, 4.048008081316032, 4.041571933256426, 4.037339294015256, 4.020437443076404, 3.2888262429555377, 3.2887591908205804, 3.2887112046281506, 3.2884751296993233, 3.28627376312162, 4.439857330421284, 3.175558263310874, 2.529891190727537, 2.5297131705225864, 2.5297193830207134, 2.529639691665429, 2.5296283377895414, 2.5295632136712443, 2.5294860930048397, 2.529472596888219, 2.529447104223491, 2.5294083296662153, 2.5293978326866213, 2.5292836512555277, 2.529246804714912, 5.020708767373059, 5.590333577537065, 5.582793747051579, 4.32212492108809, 6.64595826014559, 4.318241038638328, 4.818183470672497, 6.278240924454617, 15.475451086129219, 38.43063680689618, 8.62101681297366, 49.18097664170695, 20.871563548944906, 23.933048350095333, 16.052426781146018, 6.969974313322128, 7.7673630151638795, 13.775140905641427, 21.927525420244876, 22.003838890341065, 30.112268052679088, 15.76324827522515, 10.989728381604559, 10.098132072820029, 10.84697631429714, 11.436251898709173, 5.576360169680853, 9.625053339583445, 7.700358009502722, 10.877486963719369, 13.445687417035222, 12.032901075725775, 11.63750084838074, 11.333564874495215, 8.478940836841723, 14.692578635945537, 10.894500639624507, 7.598257102353438, 8.172709237786222, 8.252503420626136, 8.223610591405816, 8.93483194422561, 8.048637509674574, 6.443985534297011, 5.661271984860119, 4.876996392126428, 4.122834668904479, 4.122747940810268, 4.111332648410198, 4.1108249374586885, 13.627190713184866, 10.153253301156887, 3.3488140873104815, 3.3488183065150645, 3.348574061449749, 3.3475783291681167, 3.343145585952968, 4.002180419441596, 12.592547051684287, 2.5774260549761387, 2.577360422904845, 2.5773036980432265, 2.5772139227457065, 2.577093441014831, 2.577049373766962, 2.577060390578929, 2.576938033646017, 2.576814504711831, 2.5767240262135473, 2.5766403453226476, 2.5766037788829266, 2.5765116595828603, 2.5763646906232127, 5.117206022658528, 10.622089439238707, 22.32789751488658, 5.638288571093965, 5.585010330819504, 52.03689778043087, 31.088451389598273, 18.542959720228755, 10.870865930276715, 5.9813867869906705, 4.8913102780751485, 27.040274608192288, 9.246432786506537, 11.281886776755618, 12.335445601203139, 40.04330432337087, 13.597570959409866, 11.555600642082306, 10.95267161913964, 33.65427721037344, 7.9935615503522675, 41.625397280348245, 12.66312403074982, 19.179172641726666, 9.555895503466067, 18.89991942958276, 13.400842576110067, 15.815720258515066, 12.084634515955015, 18.127341815956214, 16.675536021305646, 32.50915883366769, 19.216378525342236, 29.113833641433672, 21.1139573482219, 14.546930432268939, 14.233729500048703, 15.96725721032485, 18.981365079654587, 11.878710141865902, 5.017259500686074, 3.6874635845594286, 2.9997309918544173, 2.9871921601945264, 2.9614332374460135, 6.499309103031628, 2.3075892533440427, 2.3073255351805, 2.3071852053333846, 2.307169013427948, 2.3067177390264333, 2.3052886534466204, 2.3049037958424052, 2.301872011474489, 2.3008367790019113, 2.260316535647311, 1.6151683543899409, 1.6151058356439505, 1.6150710530322723, 1.6150523124009801, 1.6150433168979599, 1.615024726191718, 1.615005086010124, 1.6149777996509627, 1.6149601084950227, 1.6149574098441166, 1.6149319225855594, 1.6149254758083949, 1.614928174459301, 1.6149197786564822, 6.47658586270234, 3.0189297941003814, 3.0074107526328833, 11.712797406151177, 14.8342681385795, 5.591453552920719, 7.205504066135347, 31.44586056749251, 8.610424126634792, 6.50840175748447, 8.688043923395503, 4.4633581038646515, 5.443596268877896, 3.7118614877009817, 11.437082839780496, 14.13184528974226, 16.51824069677033, 12.154018433490362, 10.407185300194204, 17.79183001137571, 9.745783144529591, 8.697624134112042, 4.974276888304737, 14.300705274236703, 10.832645006841554, 5.077568651284765, 4.231377874077697, 6.903404490005944, 6.9740785590346395, 5.663761804998089, 6.409492603575895, 6.123609520591152, 5.043808528449864, 8.196810298064674, 5.659584893095698, 6.330685400416515, 6.406471913661704, 5.867649078852883, 5.795448173111556, 5.669776798017612], "Total": [82.0, 72.0, 21.0, 87.0, 28.0, 28.0, 62.0, 57.0, 42.0, 15.0, 7.0, 39.0, 14.0, 65.0, 32.0, 8.0, 45.0, 5.0, 16.0, 11.0, 18.0, 10.0, 25.0, 33.0, 16.0, 13.0, 30.0, 6.0, 9.0, 16.0, 8.333320366739315, 6.814846098419275, 6.055358914878761, 5.296303770206869, 5.293452495505363, 4.537173633089361, 4.537161977608013, 4.537076370705696, 4.536197599208575, 4.537497942284582, 3.777981722511144, 3.77795990813984, 3.7779663348615973, 3.7779332141291997, 3.7777932698690413, 5.2641538302961575, 3.779746798086225, 3.018786116941941, 3.0187690310657076, 3.018779152551457, 3.018779425462811, 3.0187762662570217, 3.0187907084691896, 3.0187786251881015, 3.0187694718463667, 3.0187763925259237, 3.0187933734985495, 3.0187877747901948, 3.018732461586449, 3.0187769629638765, 6.0622581955567085, 6.827942871425972, 6.825273909535559, 5.305091757336222, 8.354674626289748, 5.304634612670021, 5.989877426303743, 8.354802435721012, 23.292836300204645, 65.60881218461545, 12.024322715954007, 87.35991227339224, 33.3616263486667, 39.792790647744695, 25.715173943434774, 9.641861802371954, 11.427520584207727, 24.12278162408853, 45.11399564333889, 47.76946710220329, 77.01793170548846, 32.39630640562873, 19.725312913868645, 17.913630521987432, 21.100125039753564, 24.116661722013042, 7.601776962699009, 18.807012274016692, 13.325863731308413, 25.84760893704678, 40.24558963420162, 32.73109978379268, 31.047591134544955, 33.442967637756375, 17.362390275377074, 72.52492458948795, 39.796928331031424, 13.651390594112442, 19.978534500027052, 26.483970600621824, 26.614442914810237, 82.00608979206638, 39.41903446850717, 6.9290112645650215, 6.155312526449278, 5.37986963399384, 4.608485163925309, 4.608515796733069, 4.607427495085765, 4.608128008609709, 15.319478081815394, 11.476309574223736, 3.8348916365915824, 3.835020158891418, 3.834921998998478, 3.8349986751746443, 3.8342856502374603, 4.595675375158297, 14.625856935321464, 3.0616279833153874, 3.061617194448135, 3.0616133446614278, 3.0616054247216526, 3.0616233061363567, 3.0615792312479018, 3.0616283256292696, 3.061603771755394, 3.06155673707893, 3.0615534517721334, 3.0615376466492172, 3.0615974779916306, 3.0615256662819257, 3.0615444549987223, 6.09724895796046, 13.056578078963742, 28.460126955890154, 6.9123419578760315, 6.90449427610676, 72.52492458948795, 42.52228842223325, 25.023521659134424, 14.376690349447863, 7.572622595588067, 6.139261586534922, 39.796928331031424, 12.292392863177968, 15.300535670347694, 16.905890801707336, 62.372759401208995, 18.946568039606113, 16.13177044957786, 15.345006715323233, 57.485680471310616, 10.750585488102205, 82.00608979206638, 19.12559759145718, 32.38796835988494, 13.617456111942632, 33.442967637756375, 21.34096877232374, 26.614442914810237, 18.696263964930807, 32.73109978379268, 30.494000719022964, 87.35991227339224, 39.41903446850717, 77.01793170548846, 47.76946710220329, 26.483970600621824, 26.38458155762026, 40.24558963420162, 65.60881218461545, 21.217056951754305, 5.593929858230551, 4.204015220089051, 3.5111017185467155, 3.5123246476661523, 3.5147393363186, 7.7412244997479105, 2.8186467293358346, 2.8186770185296632, 2.8186813063842084, 2.8186999331998077, 2.818733474553712, 2.818853708588872, 2.818951982460476, 2.81915044170392, 2.819258599204754, 2.82299367954613, 2.126216201425755, 2.1262209599411417, 2.126220737569822, 2.126220378592266, 2.1262244293901906, 2.126222686875048, 2.1262289356757784, 2.1262213398400434, 2.1262388701678, 2.1262362956145546, 2.126235163918702, 2.126238278034878, 2.12624501722342, 2.1262395594824386, 10.021448959108223, 4.281782245841153, 4.269041891888335, 21.053532383662628, 28.366093536226195, 9.343557180196864, 13.009780455158308, 82.00608979206638, 16.671389980836068, 12.353267425211087, 18.946404572656256, 7.979555263351815, 10.938565954714056, 6.521117707097611, 32.39630640562873, 45.11399564333889, 57.485680471310616, 39.41903446850717, 31.047591134544955, 77.01793170548846, 30.494000719022964, 25.84760893704678, 10.223632645059256, 62.372759401208995, 40.24558963420162, 10.969421646138768, 7.992820360633713, 19.934490853829185, 21.516312431351544, 14.731015690928091, 19.978534500027052, 20.094359431654084, 11.720139137106445, 65.60881218461545, 18.54420712479204, 32.38796835988494, 39.792790647744695, 42.52228842223325, 72.52492458948795, 87.35991227339224], "Category": ["Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Default", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic1", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic2", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3", "Topic3"], "logprob": [30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, -6.1588, -6.3684, -6.4945, -6.6409, -6.6511, -6.8125, -6.8125, -6.8141, -6.8152, -6.8194, -7.0202, -7.0203, -7.0203, -7.0203, -7.021, -6.7201, -7.0553, -7.2826, -7.2827, -7.2827, -7.2827, -7.2827, -7.2827, -7.2827, -7.2828, -7.2828, -7.2828, -7.2828, -7.2828, -7.2828, -6.5972, -6.4897, -6.4911, -6.747, -6.3168, -6.7479, -6.6384, -6.3737, -5.4715, -4.5619, -6.0566, -4.3153, -5.1724, -5.0355, -5.4349, -6.2691, -6.1608, -5.5879, -5.123, -5.1195, -4.8058, -5.4531, -5.8138, -5.8984, -5.8269, -5.774, -6.4922, -5.9464, -6.1695, -5.8241, -5.6121, -5.7231, -5.7565, -5.783, -6.0732, -5.5234, -5.8225, -6.1828, -6.11, -6.1002, -6.1038, -6.0208, -6.1253, -6.4376, -6.5671, -6.7162, -6.8842, -6.8842, -6.887, -6.8871, -5.6887, -5.983, -7.0922, -7.0922, -7.0922, -7.0925, -7.0939, -6.9139, -5.7677, -7.354, -7.354, -7.354, -7.3541, -7.3541, -7.3541, -7.3541, -7.3542, -7.3542, -7.3542, -7.3543, -7.3543, -7.3543, -7.3544, -6.6682, -5.9378, -5.1949, -6.5712, -6.5807, -4.3488, -4.8639, -5.3807, -5.9147, -6.5121, -6.7133, -5.0034, -6.0765, -5.8776, -5.7883, -4.6108, -5.6909, -5.8536, -5.9072, -4.7846, -6.2221, -4.5721, -5.7621, -5.3469, -6.0436, -5.3616, -5.7055, -5.5398, -5.8088, -5.4033, -5.4868, -4.8192, -5.345, -4.9296, -5.2508, -5.6234, -5.6452, -5.5302, -5.3573, -5.826, -6.241, -6.5489, -6.7554, -6.7595, -6.7682, -5.9822, -7.0177, -7.0178, -7.0178, -7.0179, -7.018, -7.0187, -7.0188, -7.0202, -7.0206, -7.0384, -7.3744, -7.3745, -7.3745, -7.3745, -7.3745, -7.3745, -7.3745, -7.3746, -7.3746, -7.3746, -7.3746, -7.3746, -7.3746, -7.3746, -5.9857, -6.749, -6.7528, -5.3932, -5.1569, -6.1326, -5.879, -4.4056, -5.7009, -5.9808, -5.6919, -6.358, -6.1594, -6.5423, -5.417, -5.2054, -5.0494, -5.3562, -5.5114, -4.9751, -5.577, -5.6908, -6.2496, -5.1936, -5.4713, -6.229, -6.4113, -5.9219, -5.9117, -6.1198, -5.9961, -6.0417, -6.2357, -5.7501, -6.1205, -6.0085, -5.9966, -6.0844, -6.0968, -6.1187], "loglift": [30.0, 29.0, 28.0, 27.0, 26.0, 25.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 0.9592, 0.9508, 0.9428, 0.9303, 0.9207, 0.9135, 0.9134, 0.9118, 0.911, 0.9065, 0.8888, 0.8888, 0.8888, 0.8887, 0.8881, 0.8572, 0.8533, 0.8508, 0.8507, 0.8507, 0.8507, 0.8507, 0.8507, 0.8507, 0.8506, 0.8506, 0.8506, 0.8506, 0.8506, 0.8506, 0.839, 0.8275, 0.8265, 0.8226, 0.7987, 0.8218, 0.8098, 0.7417, 0.6186, 0.4926, 0.6948, 0.453, 0.5585, 0.5191, 0.5563, 0.703, 0.6414, 0.4672, 0.306, 0.2523, 0.0884, 0.3071, 0.4425, 0.4543, 0.3621, 0.2814, 0.7176, 0.3576, 0.479, 0.162, -0.0689, 0.0268, 0.0462, -0.0546, 0.3108, -0.5691, -0.268, 0.4416, 0.1336, -0.1385, -0.147, -1.1893, -0.5613, 0.8649, 0.8538, 0.8393, 0.8261, 0.8261, 0.8236, 0.8233, 0.8204, 0.815, 0.8019, 0.8019, 0.8019, 0.8015, 0.8004, 0.7992, 0.7878, 0.7653, 0.7653, 0.7653, 0.7652, 0.7652, 0.7652, 0.7652, 0.7651, 0.7651, 0.7651, 0.765, 0.765, 0.765, 0.7649, 0.7622, 0.7311, 0.6948, 0.7338, 0.7254, 0.6055, 0.6243, 0.6378, 0.658, 0.7016, 0.7102, 0.551, 0.6527, 0.6328, 0.6223, 0.4943, 0.6057, 0.6039, 0.6003, 0.4021, 0.6412, 0.2594, 0.5251, 0.4135, 0.5833, 0.3668, 0.4722, 0.417, 0.5011, 0.3466, 0.3339, -0.051, 0.219, -0.0353, 0.121, 0.3383, 0.3203, 0.013, -0.3028, 0.3574, 1.2756, 1.2533, 1.227, 1.2224, 1.2131, 1.2095, 1.1843, 1.1842, 1.1841, 1.1841, 1.1839, 1.1832, 1.183, 1.1817, 1.1812, 1.1621, 1.1095, 1.1094, 1.1094, 1.1094, 1.1094, 1.1094, 1.1094, 1.1093, 1.1093, 1.1093, 1.1093, 1.1093, 1.1093, 1.1093, 0.9478, 1.0349, 1.0341, 0.798, 0.7361, 0.8709, 0.7935, 0.4258, 0.7237, 0.7435, 0.6047, 0.8034, 0.6865, 0.8209, 0.3432, 0.2236, 0.1373, 0.2078, 0.2913, -0.0809, 0.2437, 0.2952, 0.664, -0.0884, 0.0719, 0.6141, 0.7484, 0.3239, 0.2578, 0.4285, 0.2475, 0.1961, 0.5412, -0.6956, 0.1976, -0.248, -0.442, -0.5962, -1.1425, -1.3505]}, "token.table": {"Topic": [1, 1, 3, 3, 1, 2, 3, 1, 2, 1, 2, 3, 3, 1, 2, 1, 2, 3, 1, 2, 3, 3, 3, 2, 1, 1, 2, 3, 3, 1, 1, 2, 3, 1, 3, 1, 1, 2, 3, 2, 1, 2, 1, 1, 2, 3, 1, 1, 2, 2, 1, 2, 1, 2, 3, 2, 2, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 3, 2, 2, 1, 2, 3, 3, 2, 1, 2, 3, 1, 2, 3, 1, 2, 3, 3, 3, 3, 1, 2, 3, 2, 3, 1, 2, 3, 2, 1, 2, 1, 2, 2, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 2, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 2, 1, 2, 3, 1, 2, 3, 1, 3, 1, 2, 3, 2, 1, 2, 3, 3, 2, 1, 2, 3, 1, 2, 3, 3, 2, 1, 1, 2, 3, 1, 2, 3, 1, 1, 2, 3, 2, 1, 2, 3, 1, 2, 3, 1, 2, 1, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 1, 2, 3, 1, 2, 1, 1, 1, 2, 3, 1, 2, 3, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 3, 1, 2, 3, 1, 3, 1, 1, 2, 2, 3, 2, 1, 2, 3, 2, 3, 1, 1, 2, 2, 3, 3, 3, 1, 2, 2, 1, 3, 2, 3, 3, 1, 2, 3, 1, 2, 1, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 1, 1, 2, 3, 3, 1, 2, 2, 3, 3, 1, 2, 2, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 1, 2, 3, 1, 1, 3, 1, 3, 1, 1, 2, 3, 2, 1, 2, 3, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3], "Freq": [0.9937824096800321, 0.8347416222647847, 0.16694832445295693, 0.8544326654374838, 0.18232501808370172, 0.36465003616740344, 0.4558125452092543, 0.14483319994348237, 0.8689991996608942, 0.580364247298076, 0.290182123649038, 0.12436376727815915, 0.9406277816065245, 0.2606711143375177, 0.7168455644281738, 0.5213239248239295, 0.3317515885243188, 0.14217925222470806, 0.6439748172646632, 0.17172661793724353, 0.12879496345293265, 0.9406297261653562, 0.7095516600156514, 0.9798708452982418, 0.9937793963984586, 0.23238182732067372, 0.4182872891772127, 0.3253345582489432, 0.8535483610406946, 0.7940780129026488, 0.7484829052416149, 0.16632953449813664, 0.16632953449813664, 0.7598562141135156, 0.1899640535283789, 0.9937799436015833, 0.2811493734896029, 0.6091569758941396, 0.09371645782986764, 0.9798785942440641, 0.24405337784041553, 0.7321601335212466, 0.9600014937539552, 0.20682544773268416, 0.716994885473305, 0.08273017909307366, 0.9937792227909137, 0.7941143905166617, 0.9798755304065866, 0.7824143200739903, 0.1367441243849444, 0.8888368085021386, 0.1619004860137904, 0.3238009720275808, 0.5666517010482663, 0.9798806085925973, 0.7822906836205608, 0.2993579084463012, 0.0997859694821004, 0.5987158168926024, 0.7000643701360387, 0.26252413880101455, 0.0978125911520566, 0.3912503646082264, 0.489062955760283, 0.3865034149669749, 0.2898775612252312, 0.3220861791391458, 0.9798780652058541, 0.7822644668619433, 0.3598980053191162, 0.11996600177303873, 0.5398470079786744, 0.709508263556255, 0.9798864485950926, 0.9937801729572022, 0.8200419622807248, 0.16400839245614496, 0.36662379447274146, 0.5499356917091122, 0.09165594861818536, 0.1628860386391212, 0.8144301931956061, 0.7094335833993952, 0.709560364264331, 0.940636267123056, 0.7095527394065466, 0.25596965743366273, 0.25596965743366273, 0.4266160957227712, 0.9798742982761299, 0.9406324814991481, 0.1057600686597439, 0.35253356219914633, 0.5288003432987195, 0.8659244112769758, 0.718149836116646, 0.23938327870554868, 0.8247751644205317, 0.16495503288410635, 0.8703834961063195, 0.4561161957983387, 0.3731859783804589, 0.16586043483575952, 0.06955703821209483, 0.7651274203330432, 0.2086711146362845, 0.46054522552932736, 0.4396113516416307, 0.1046693694384835, 0.2764032416899576, 0.6784443205117141, 0.05025513485271957, 0.7822844899540264, 0.32992323185620775, 0.5655826831820704, 0.1413956707955176, 0.15317949219959273, 0.84248720709776, 0.940635841868872, 0.5791904888183692, 0.2895952444091846, 0.12193483975123563, 0.789289139821027, 0.26309637994034235, 0.7822688491185414, 0.35115017741500937, 0.30098586635572233, 0.35115017741500937, 0.4004297712622098, 0.25026860703888115, 0.30032232844665735, 0.7940747786376171, 0.940635245943801, 0.6222007300123625, 0.2722128193804086, 0.07777509125154532, 0.9293905503595192, 0.19906083662955246, 0.49765209157388113, 0.2985912549443287, 0.7084677569386384, 0.868031441949204, 0.38951967854340774, 0.3765356892586275, 0.23371180712604467, 0.8378542927300869, 0.11969347039001241, 0.7094835287880047, 0.940628348506852, 0.9798936481126063, 0.9937769301254865, 0.27905456901116077, 0.7441455173630953, 0.9406292255122717, 0.881795801994577, 0.871360251771215, 0.0871360251771215, 0.9937825547855572, 0.4607660508210905, 0.4031702944684542, 0.11519151270527263, 0.979872342226803, 0.31371568764366436, 0.6797173232279394, 0.05228594794061073, 0.14687030995796505, 0.7343515497898253, 0.14687030995796505, 0.21082126616298283, 0.7730113092642703, 0.14110247173016288, 0.7290294372725082, 0.14110247173016288, 0.9406361083120246, 0.7094063668242965, 0.5317165669007275, 0.3190299401404365, 0.15951497007021825, 0.2653064625911528, 0.5306129251823056, 0.18950461613653774, 0.1217694553253743, 0.5914516401518181, 0.29572582007590903, 0.05348662181255745, 0.6418394617506894, 0.2674331090627873, 0.3230167607968726, 0.39755909021153546, 0.27332187452043066, 0.9445631191071362, 0.20294763958237982, 0.48200064400815207, 0.30442145937356974, 0.24795790471371806, 0.7438737141411542, 0.8816250098469999, 0.9937801313895221, 0.49388346312282266, 0.1543385822258821, 0.33954488089694057, 0.42224370166494407, 0.15834138812435403, 0.47502416437306205, 0.7923278790488909, 0.1320546465081485, 0.30746099165831975, 0.15373049582915987, 0.5380567354020596, 0.6031243250179095, 0.22617162188171605, 0.15078108125447737, 0.6003363205046456, 0.1500840801261614, 0.3001681602523228, 0.9937745412907246, 0.9747677269380063, 0.9406253671609877, 0.9908578639752076, 0.9798997583072124, 0.629465715505781, 0.2997455788122767, 0.05994911576245534, 0.19607156668468634, 0.71892907784385, 0.06535718889489545, 0.0914196617856514, 0.3656786471426056, 0.457098308928257, 0.37747637053954114, 0.3235511747481781, 0.3235511747481781, 0.7095469710852074, 0.7940849744988119, 0.9798946996216891, 0.940634475060381, 0.2342445975758902, 0.7027337927276706, 0.9937791329487639, 0.8787419744106527, 0.14645699573510879, 0.46004383523621845, 0.6133917803149579, 0.9798707357410528, 0.4255712792154618, 0.23212978866297915, 0.3481946829944687, 0.23354760765129723, 0.7006428229538917, 0.794079363715936, 0.9937945936498777, 0.8679641699427698, 0.427481708816898, 0.569975611755864, 0.9406381150980226, 0.9406280865527412, 0.7540575915344055, 0.1885143978836014, 0.8681634174962838, 0.8816061106474342, 0.8938260090342963, 0.9138692535888904, 0.06527637525634931, 0.7095385278725789, 0.12511228263370036, 0.3753368479011011, 0.5004491305348014, 0.7539926136939182, 0.18849815342347956, 0.8815430994963807, 0.10556001465907588, 0.7389201026135312, 0.15834002198861383, 0.879085598545346, 0.14651426642422433, 0.3210768599306406, 0.1070256199768802, 0.6421537198612812, 0.23660391794297153, 0.7098117538289146, 0.8804307409659213, 0.3020695091623522, 0.5663803296794103, 0.1510347545811761, 0.8541351671444783, 0.9937754186083612, 0.9798975791783013, 0.1291785298349847, 0.7750711790099082, 0.9406360099353758, 0.14466876871746545, 0.8680126123047928, 0.9799035928525643, 0.48765354711489217, 0.1994946329106377, 0.31032498452765866, 0.21612964179222968, 0.5866375991503378, 0.18525397867905402, 0.2715359269125855, 0.33941990864073185, 0.4073038903688782, 0.9440546118457824, 0.1198872021638449, 0.759285613704351, 0.1598496028851265, 0.7937039596194567, 0.9937763843662377, 0.951471341227749, 0.7260008640943142, 0.2074288183126612, 0.8816083753987544, 0.3289181785285479, 0.5681313992765826, 0.08970495778051306, 0.8679584005843183, 0.3005886700543415, 0.601177340108683, 0.11272075127037805, 0.3759608024495151, 0.5012810699326867, 0.13117334248322143, 0.5574867055536911, 0.3279333562080536, 0.1282611203480751, 0.6413056017403755, 0.22445696060913145, 0.5860208851873473, 0.3662630532420921, 0.07325261064841841, 0.5608979991492533, 0.37774763208010936, 0.06868138765092897, 0.557659087489863, 0.3548739647662765, 0.10139256136179328, 0.5582341328144435, 0.22329365312577737, 0.22329365312577737, 0.10974794704661921, 0.5121570862175563, 0.37802070649391056], "Term": ["adorable", "ahead", "ahead", "alexis", "alone", "alone", "alone", "already", "already", "always", "always", "always", "amelia", "answer", "answer", "around", "around", "around", "ask", "ask", "ask", "associate", "avoid", "barbara", "beauty", "become", "become", "become", "beginning", "behavior", "better", "better", "better", "birthday", "birthday", "booklet", "boyfriend", "boyfriend", "boyfriend", "chance", "change", "change", "check", "child", "child", "child", "chore", "cigarette", "circumstances", "civil", "college", "college", "column", "column", "column", "commit", "communicate", "company", "company", "company", "concern", "concern", "consider", "consider", "consider", "could", "could", "could", "council", "counseling", "couple", "couple", "couple", "critical", "daddy", "dance", "danny", "danny", "daughter", "daughter", "daughter", "decision", "decision", "depression", "derby", "determination", "digit", "dinner", "dinner", "dinner", "discus", "discuss", "divorce", "divorce", "divorce", "early", "either", "either", "embarrass", "embarrass", "employee", "every", "every", "every", "everything", "everything", "everything", "family", "family", "family", "father", "father", "father", "find", "first", "first", "first", "found", "found", "friday", "friend", "friend", "friend", "friendship", "friendship", "gathering", "getting", "getting", "getting", "going", "going", "going", "grandma", "hand", "happen", "happen", "happen", "happily", "house", "house", "house", "human", "hurting", "husband", "husband", "husband", "include", "include", "jennie", "johnson", "junior", "kitchen", "know", "know", "larger", "lesson", "life", "life", "linda", "little", "little", "little", "locate", "looking", "looking", "looking", "love", "love", "love", "marriage", "marriage", "married", "married", "married", "massage", "mental", "money", "money", "money", "month", "month", "month", "mother", "mother", "mother", "need", "need", "need", "never", "never", "never", "offend", "parent", "parent", "parent", "party", "party", "patient", "peer", "people", "people", "people", "person", "person", "person", "phone", "phone", "place", "place", "place", "please", "please", "please", "point", "point", "point", "ponytail", "possible", "postal", "pound", "pregnancy", "problem", "problem", "problem", "question", "question", "question", "reader", "reader", "reader", "recently", "recently", "recently", "recipe", "regard", "relief", "reluctant", "remove", "remove", "rescue", "respect", "respect", "retire", "retire", "ricky", "right", "right", "right", "rings", "rings", "roommate", "running", "safety", "school", "school", "scout", "select", "serve", "serve", "settle", "shirt", "short", "since", "since", "sitting", "situation", "situation", "situation", "sleep", "sleep", "sleeping", "something", "something", "something", "sorry", "sorry", "speak", "speak", "speak", "spend", "spend", "sperm", "still", "still", "still", "stranger", "strong", "swear", "teach", "teach", "temperature", "texas", "texas", "theater", "think", "think", "think", "three", "three", "three", "times", "times", "times", "tire", "together", "together", "together", "truth", "ultimatum", "unable", "upset", "upset", "volunteer", "want", "want", "want", "watch", "wedding", "wedding", "wedding", "week", "week", "without", "without", "without", "woman", "woman", "woman", "worry", "worry", "worry", "would", "would", "would", "write", "write", "write", "wrong", "wrong", "wrong", "years", "years", "years"]}, "R": 30, "lambda.step": 0.01, "plot.opts": {"xlab": "PC1", "ylab": "PC2"}, "topic.order": [1, 2, 3]};
+
+function LDAvis_load_lib(url, callback){
+  var s = document.createElement('script');
+  s.src = url;
+  s.async = true;
+  s.onreadystatechange = s.onload = callback;
+  s.onerror = function(){console.warn("failed to load library " + url);};
+  document.getElementsByTagName("head")[0].appendChild(s);
+}
+
+if(typeof(LDAvis) !== "undefined"){
+   // already loaded: just create the visualization
+   !function(LDAvis){
+       new LDAvis("#" + "ldavis_el78171404288134550246423385911", ldavis_el78171404288134550246423385911_data);
+   }(LDAvis);
+}else if(typeof define === "function" && define.amd){
+   // require.js is available: use it to load d3/LDAvis
+   require.config({paths: {d3: "https://d3js.org/d3.v5"}});
+   require(["d3"], function(d3){
+      window.d3 = d3;
+      LDAvis_load_lib("https://cdn.jsdelivr.net/gh/bmabey/pyLDAvis@3.4.0/pyLDAvis/js/ldavis.v3.0.0.js", function(){
+        new LDAvis("#" + "ldavis_el78171404288134550246423385911", ldavis_el78171404288134550246423385911_data);
+      });
+    });
+}else{
+    // require.js not available: dynamically load d3 & LDAvis
+    LDAvis_load_lib("https://d3js.org/d3.v5.js", function(){
+         LDAvis_load_lib("https://cdn.jsdelivr.net/gh/bmabey/pyLDAvis@3.4.0/pyLDAvis/js/ldavis.v3.0.0.js", function(){
+                 new LDAvis("#" + "ldavis_el78171404288134550246423385911", ldavis_el78171404288134550246423385911_data);
+            })
+         });
+}
+</script>
+<style>
+  /* Responsive styling for LDAvis */
+  #ldavis_el78171404288134550246423385911 {
+    width: 100%;
+    height: 75vh; /* Scales height based on viewport height */
+    max-width: 500px;
+    margin: auto;
+  }
+</style>
+
+
+</section>
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A project by Team 27 (Fall 2024).</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Made with <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-dsan6000/fall-2024-project-team-27">View the source at Github</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

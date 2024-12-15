@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Project Team 27 - Machine Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Project Team 27</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/gu-dsan6000/fall-2024-project-team-27" rel="" target="">
+ <span class="menu-text">Code and Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./secondary/authors.html" rel="" target="">
+ <span class="menu-text">Authors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./secondary/references.html" rel="" target="">
+ <span class="menu-text">References</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ml_models.html">Machine Learning</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda_reddit_external.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NLP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NLP</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ml_models.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Machine Learning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discussion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discussion</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusion</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
+  <li><a href="#data-preparation-and-feature-engineering" id="toc-data-preparation-and-feature-engineering" class="nav-link" data-scroll-target="#data-preparation-and-feature-engineering">Data Preparation and Feature Engineering</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning-and-preprocessing" id="toc-data-cleaning-and-preprocessing" class="nav-link" data-scroll-target="#data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</a></li>
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering">Feature Engineering</a></li>
+  <li><a href="#data-splits" id="toc-data-splits" class="nav-link" data-scroll-target="#data-splits">Data Splits</a></li>
+  <li><a href="#addressing-imbalanced-data" id="toc-addressing-imbalanced-data" class="nav-link" data-scroll-target="#addressing-imbalanced-data">Addressing Imbalanced Data</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#aio-models" id="toc-aio-models" class="nav-link" data-scroll-target="#aio-models">AIO Models</a>
+  <ul class="collapse">
+  <li><a href="#model-overview" id="toc-model-overview" class="nav-link" data-scroll-target="#model-overview">Model Overview</a></li>
+  <li><a href="#model-performance" id="toc-model-performance" class="nav-link" data-scroll-target="#model-performance">Model Performance</a></li>
+  <li><a href="#confusion-matrices" id="toc-confusion-matrices" class="nav-link" data-scroll-target="#confusion-matrices">Confusion Matrices</a></li>
+  <li><a href="#roc-curve-analysis" id="toc-roc-curve-analysis" class="nav-link" data-scroll-target="#roc-curve-analysis">ROC Curve Analysis</a></li>
+  <li><a href="#feature-importance" id="toc-feature-importance" class="nav-link" data-scroll-target="#feature-importance">Feature Importance</a></li>
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a></li>
+  </ul></li>
+  <li><a href="#aita-models" id="toc-aita-models" class="nav-link" data-scroll-target="#aita-models">AITA Models</a>
+  <ul class="collapse">
+  <li><a href="#model-overview-1" id="toc-model-overview-1" class="nav-link" data-scroll-target="#model-overview-1">Model Overview</a></li>
+  <li><a href="#model-performance-1" id="toc-model-performance-1" class="nav-link" data-scroll-target="#model-performance-1">Model Performance</a>
+  <ul class="collapse">
+  <li><a href="#key-observations" id="toc-key-observations" class="nav-link" data-scroll-target="#key-observations">Key observations:</a></li>
+  </ul></li>
+  <li><a href="#confusion-matrices-1" id="toc-confusion-matrices-1" class="nav-link" data-scroll-target="#confusion-matrices-1">Confusion Matrices</a>
+  <ul class="collapse">
+  <li><a href="#key-observations-1" id="toc-key-observations-1" class="nav-link" data-scroll-target="#key-observations-1">Key observations:</a></li>
+  </ul></li>
+  <li><a href="#roc-curve-analysis-1" id="toc-roc-curve-analysis-1" class="nav-link" data-scroll-target="#roc-curve-analysis-1">ROC Curve Analysis</a></li>
+  <li><a href="#feature-importance-1" id="toc-feature-importance-1" class="nav-link" data-scroll-target="#feature-importance-1">Feature Importance</a></li>
+  <li><a href="#summary-2" id="toc-summary-2" class="nav-link" data-scroll-target="#summary-2">Summary</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings:</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps:</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Machine Learning</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="executive-summary" class="level1">
+<h1>Executive Summary</h1>
+<p>In this section, we leverage machine learning to predict community judgments on two advice-seeking subreddits, <strong>AmItheAsshole</strong> (AITA) and <strong>AmIOverreacting</strong> (AIO). Using structured feedback labels such as <strong>YTA/NTA</strong> and <strong>OOR/NOR</strong>, we trained models to analyze the underlying topical, sentiment, and engagement features driving user responses. Our goal is to uncover whether community judgments can be accurately predicted based on post metadata and derived features, offering insights into the dynamics of online discourse.</p>
+<p>To achieve this, we built and evaluated <strong>XGBoost</strong> and <strong>Random Forest</strong> models for each subreddit, incorporating key features identified during EDA, including post topics, sentiment scores, and engagement metrics (e.g., post scores and comment counts). These models help us understand not only the accuracy of predictions but also the relative importance of different features in shaping community outcomes.</p>
+<p>Key findings reveal that both models perform well in predicting judgments, with Random Forest performing better within <strong>AmIOverreacting</strong> and XGBoost performing better within <strong>AmItheAsshole</strong>. Feature importance analysis highlights that <strong>post score</strong> and the <strong>number of comments</strong> were among the strongest predictors across both subreddits. For AIO, the enhanced labeling system we developed plays a critical role in generating reliable training data, enabling the model to accurately differentiate between “Overreacting” and “Not Overreacting” posts.</p>
+<p>This work demonstrates the power of machine learning in analyzing large-scale social media data, offering practical applications for community moderation and understanding societal trends in judgment and advice-seeking behaviors. The results provide a strong foundation for further exploration of how these platforms shape and reflect public discourse.</p>
+</section>
+<section id="data-preparation-and-feature-engineering" class="level1">
+<h1>Data Preparation and Feature Engineering</h1>
+<p>To ensure our models effectively predict community judgments on <strong>AmItheAsshole</strong> (AITA) and <strong>AmIOverreacting</strong> (AIO), we conducted rigorous data preparation and feature engineering. This process was tailored to capture the key characteristics of each subreddit and ensure high-quality inputs for the machine learning models.</p>
+<section id="data-cleaning-and-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</h2>
+<ol type="1">
+<li><strong>AITA Labels:</strong> The AITA subreddit includes structured feedback labels (YTA, NTA, ESH, etc.) directly from user comments. These labels were cleaned and aggregated to assign a single label per post, representing the majority vote.</li>
+<li><strong>AIO Labels:</strong> Since AIO does not always use predefined labels, we created a labeling system that is outlined below:</li>
+</ol>
+<ul>
+<li>Since AIO does not always use predefined labels, we developed a robust labeling system to classify posts as “Overreacting,” “Not Overreacting,” or “Unclear.” This system relies on analyzing the top 10 ranked comments for each post, which were identified based on their engagement scores (e.g., upvotes). By focusing on the most relevant and visible comments, we ensured that the labeling reflected the general sentiment of the community rather than outliers.</li>
+<li>To classify the posts, we implemented keyword matching on the comment text using predefined patterns for each label category. For instance, terms such as “valid reaction” or “not overreacting” were associated with the “Not Overreacting” label, while phrases like “blown out of proportion” or “overreacting” indicated the “Overreacting” label. We also used advanced regex patterns to ensure accuracy by avoiding partial matches or misclassifications (e.g., distinguishing “not overreacting” from “overreacting”).</li>
+<li>Once individual comment labels were generated, a majority vote system was applied across the top 10 comments to determine the final label for each post. If “Not Overreacting” comments outnumbered “Overreacting” comments, the post was labeled as “Not Overreacting,” and vice versa. Posts where neither label achieved a clear majority, or where labels were ambiguous, were classified as “Unclear.”</li>
+<li>This method ensured that labels were derived systematically and consistently, capturing the consensus of the AIO community while minimizing noise from outlier comments. By doing so, we created reliable training data for the machine learning models, enabling accurate predictions of community judgments.</li>
+</ul>
+</section>
+<section id="feature-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="feature-engineering">Feature Engineering</h2>
+<p>Key features for the models were derived from both post content and metadata:</p>
+<ol type="1">
+<li><strong>Post Sentiment Scores:</strong> Sentiment scores were calculated using a pre-trained sentiment analysis model, quantifying the emotional tone of each post.</li>
+<li><strong>Post Topics:</strong> Topics were extracted using Non-Negative Matrix Factorization (NMF), as detailed in the NLP section. Each post was assigned a dominant topic to incorporate thematic insights.</li>
+<li><strong>Engagement Metrics:</strong> Features such as post score, number of comments, and time since posting were included to capture user engagement levels.</li>
+<li><strong>Reddit Metadata:</strong> Additional features, such as the day and hour of posting, were included based on trends observed in the EDA.</li>
+</ol>
+</section>
+<section id="data-splits" class="level2">
+<h2 class="anchored" data-anchor-id="data-splits">Data Splits</h2>
+<p>The datasets for both subreddits were split into training (80%) and test (20%) sets. This division ensures robust evaluation of the models on unseen data while preventing overfitting.</p>
+</section>
+<section id="addressing-imbalanced-data" class="level2">
+<h2 class="anchored" data-anchor-id="addressing-imbalanced-data">Addressing Imbalanced Data</h2>
+<p>In both subreddits, labels such as ESH in AITA and “Unclear” in AIO were either ambiguous or underrepresented. Rather than attempting to model these minority classes, we chose to remove them from the dataset. This decision ensured that the machine learning models could focus on clear and well-defined labels, such as YTA and NTA in AITA, and “Overreacting” and “Not Overreacting” in AIO.</p>
+<p>By eliminating these ambiguous labels, we streamlined the dataset, improving the clarity and reliability of the training process. This allowed us to focus on patterns and features relevant to the dominant community judgments without introducing noise or complexity from poorly defined categories.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This data preparation pipeline ensures that the input features capture the thematic, sentimental, and engagement-related nuances of each subreddit. By incorporating sentiment analysis, topic modeling, and metadata, the models are equipped to make informed predictions about community judgments.</p>
+</section>
+</section>
+<section id="aio-models" class="level1">
+<h1>AIO Models</h1>
+<section id="model-overview" class="level2">
+<h2 class="anchored" data-anchor-id="model-overview">Model Overview</h2>
+<p>To predict community judgments on the AmIOverreacting (AIO) subreddit, we employed two machine learning models: <strong>Random Forest</strong> and <strong>XGBoost</strong>. These models were selected for their ability to handle structured data effectively and their robust performance in classification tasks. Both models leveraged features such as post sentiment scores, topics, engagement metrics, and metadata, as outlined in the feature engineering section.</p>
+<p>The models aimed to classify posts into two categories: <strong>Overreacting</strong> and <strong>Not Overreacting</strong>. The enhanced labeling system discussed earlier provided reliable training data for this task.</p>
+</section>
+<section id="model-performance" class="level2">
+<h2 class="anchored" data-anchor-id="model-performance">Model Performance</h2>
+<p>The performance of each model was evaluated using standard classification metrics, including precision, recall, F1-score, and accuracy. Below is the classification report for both models, which highlights their respective strengths and weaknesses.</p>
+<pre class="raw"><code>Random Forest Classification Report:
+                  precision    recall  f1-score   support
+
+Not Overreacting       0.67      0.91      0.77       172
+    Overreacting       0.78      0.43      0.55       134
+
+        accuracy                           0.70       306
+       macro avg       0.73      0.67      0.66       306
+    weighted avg       0.72      0.70      0.67       306
+
+XGBoost Classification Report:
+                  precision    recall  f1-score   support
+
+Not Overreacting       0.69      0.80      0.74       172
+    Overreacting       0.68      0.54      0.60       134
+
+        accuracy                           0.69       306
+       macro avg       0.68      0.67      0.67       306
+    weighted avg       0.69      0.69      0.68       306
+
+
+Random Forest Kappa Score: 0.34994746219562345
+XGBoost Kappa Score: 0.34766388346065025</code></pre>
+<p>From the classification reports:</p>
+<ul>
+<li>The <strong>Random Forest</strong> model achieved higher overall accuracy (70%) compared to XGBoost (69%).</li>
+<li>Random Forest demonstrated strong performance in identifying “Not Overreacting” posts, with a recall of 0.91 and an F1-score of 0.77.</li>
+<li>XGBoost performed more evenly across both labels but struggled with “Overreacting” posts, achieving a recall of only 0.54.</li>
+</ul>
+</section>
+<section id="confusion-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrices">Confusion Matrices</h2>
+<p>To further analyze the models’ predictions, confusion matrices were generated for both Random Forest and XGBoost. These matrices provide insights into how well each model correctly classified the labels and where misclassifications occurred.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/ml/confusion_matrices_aio.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">AIO Confusion Matrices</figcaption>
+</figure>
+</div>
+<p>Key observations:</p>
+<ul>
+<li>Random Forest excelled in identifying “Not Overreacting” posts, with only 16 misclassifications out of 172 true examples.</li>
+<li>XGBoost, while slightly less accurate, demonstrated a more balanced approach, with fewer extreme discrepancies between the two labels.</li>
+</ul>
+</section>
+<section id="roc-curve-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="roc-curve-analysis">ROC Curve Analysis</h2>
+<p>The Receiver Operating Characteristic (ROC) curve evaluates the trade-off between the true positive rate (sensitivity) and false positive rate for both models. The AUC (Area Under the Curve) scores provide a comprehensive measure of model performance.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/ml/roc_curve_aio_fixed.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">AIO ROC Curve</figcaption>
+</figure>
+</div>
+<p>Insights from the ROC analysis:</p>
+<ul>
+<li>The Random Forest model achieved a higher AUC score (0.72) compared to XGBoost (0.68), indicating superior overall performance.</li>
+<li>Both models outperformed random guessing, demonstrating their ability to capture meaningful patterns in the data.</li>
+</ul>
+</section>
+<section id="feature-importance" class="level2">
+<h2 class="anchored" data-anchor-id="feature-importance">Feature Importance</h2>
+<p>Feature importance analysis revealed that post score and number of comments were among the strongest predictors for both models. Sentiment scores and post topics also played significant roles, highlighting the importance of combining content, engagement, and metadata features in predicting community judgments.</p>
+</section>
+<section id="summary-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-1">Summary</h2>
+<p>The AIO models demonstrate the feasibility of predicting community judgments based on a combination of textual and engagement-related features. While the Random Forest model showed slightly better performance overall, both models provide valuable insights into the factors driving user responses on the AIO subreddit. These findings lay the groundwork for future applications, such as improving content moderation or understanding community dynamics on advice-seeking platforms.</p>
+</section>
+</section>
+<section id="aita-models" class="level1">
+<h1>AITA Models</h1>
+<section id="model-overview-1" class="level2">
+<h2 class="anchored" data-anchor-id="model-overview-1">Model Overview</h2>
+<p>For the <strong>AmItheAsshole (AITA)</strong> subreddit, we employed <strong>Random Forest</strong> and <strong>XGBoost</strong> models to classify posts based on community judgments. Unlike AIO, AITA includes multiple structured feedback labels such as <strong>YTA (You’re the Ahole),</strong> <strong>NTA (Not the Ahole),</strong> <strong>ESH (Everyone Sucks Here),</strong> <strong>NAH (No Aholes Here)</strong>, and <strong>INFO (Not Enough Info).</strong> However, due to significant imbalances in the distribution of these labels, we focused on the dominant classes, YTA and NTA, for our predictive modeling.</p>
+</section>
+<section id="model-performance-1" class="level2">
+<h2 class="anchored" data-anchor-id="model-performance-1">Model Performance</h2>
+<p>The performance of both models was evaluated using standard classification metrics. Below are the classification reports for Random Forest and XGBoost:</p>
+<pre class="raw"><code>Random Forest Classification Report:
+              precision    recall  f1-score   support
+
+         YTA       0.72      0.52      0.60      7387
+         NTA       0.59      0.84      0.69      7012
+
+    accuracy                           0.63     15352
+   macro avg       0.26      0.27      0.26     15352
+weighted avg       0.61      0.63      0.60     15352
+
+XGBoost Classification Report:
+              precision    recall  f1-score   support
+
+         YTA       0.71      0.62      0.66      7387
+         NTA       0.64      0.81      0.71      7012
+
+    accuracy                           0.67     15352
+   macro avg       0.27      0.29      0.27     15352
+weighted avg       0.63      0.67      0.64     15352
+
+
+Random Forest Kappa Score: 0.3125477758880384
+XGBoost Kappa Score: 0.37599140374591733</code></pre>
+<section id="key-observations" class="level3">
+<h3 class="anchored" data-anchor-id="key-observations">Key observations:</h3>
+<ul>
+<li><strong>XGBoost</strong> outperformed Random Forest with an accuracy of 67% compared to 63%.</li>
+<li>XGBoost demonstrated higher precision for <strong>NTA</strong> and higher recall for <strong>YTA</strong>, reflecting a balanced performance.</li>
+</ul>
+</section>
+</section>
+<section id="confusion-matrices-1" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrices-1">Confusion Matrices</h2>
+<p>The confusion matrices below provide a detailed look at the distribution of predictions for both models:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/ml/confusion_matrices_aita.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">AITA Confusion Matrces</figcaption>
+</figure>
+</div>
+<section id="key-observations-1" class="level3">
+<h3 class="anchored" data-anchor-id="key-observations-1">Key observations:</h3>
+<ul>
+<li><strong>Random Forest</strong> had difficulty predicting <strong>YTA,</strong> with a relatively high number of false negatives misclassified as <strong>NTA.</strong></li>
+<li><strong>XGBoost</strong> improved on this by capturing more correct <strong>YTA</strong> classifications while maintaining strong performance on <strong>NTA</strong> predictions.</li>
+</ul>
+</section>
+</section>
+<section id="roc-curve-analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="roc-curve-analysis-1">ROC Curve Analysis</h2>
+<p>The ROC curves highlight the models’ ability to balance sensitivity and specificity:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/ml/roc_curve_aita_fixed.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">AITA ROC Curve</figcaption>
+</figure>
+</div>
+<p>Insights from the ROC analysis:</p>
+<ul>
+<li><strong>XGBoost</strong> achieved a higher AUC score (0.67) compared to Random Forest (0.63), indicating better overall performance.</li>
+<li>Both models performed well above the random baseline, demonstrating their ability to leverage meaningful patterns in the data.</li>
+</ul>
+</section>
+<section id="feature-importance-1" class="level2">
+<h2 class="anchored" data-anchor-id="feature-importance-1">Feature Importance</h2>
+<p>Feature importance analysis revealed that post score, number of comments, and sentiment score were the most significant predictors across both models. This aligns with earlier findings in EDA and NLP, where these features were identified as key drivers of community engagement.</p>
+</section>
+<section id="summary-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-2">Summary</h2>
+<p>The AITA models underscore the potential for machine learning to predict community judgments in multi-label settings. While XGBoost emerged as the better-performing model, both models highlighted key features influencing user responses. Future work could focus on handling of underrepresented labels and exploring advanced techniques such as multi-label classification.</p>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Our project demonstrates the feasibility and value of leveraging machine learning to analyze and predict community judgments across advice-seeking platforms. Through a combination of EDA, NLP, and ML, we have uncovered key insights into user behaviors, thematic trends, and judgment patterns in modern online subreddits</p>
+<section id="key-findings" class="level2">
+<h2 class="anchored" data-anchor-id="key-findings">Key Findings:</h2>
+<ol type="1">
+<li><strong>AIO Results:</strong></li>
+</ol>
+<ul>
+<li>Random Forest performed slightly better in predicting “Overreacting” and “Not Overreacting” judgments, with an accuracy of 70%.</li>
+<li>Post score and comment count emerged as the most influential predictors, emphasizing the role of engagement metrics.</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>AITA Results:</strong></li>
+</ol>
+<ul>
+<li>XGBoost outperformed Random Forest, achieving 67% accuracy for the labels (YTA and NTA).</li>
+<li>Post score, comment count, and sentiment score were the most influential predictors.</li>
+</ul>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next Steps:</h2>
+<ol type="1">
+<li><strong>Model Improvements:</strong></li>
+</ol>
+<ul>
+<li>Experiment with advanced NLP techniques, such as transformers, to capture deeper contextual relationships in post text.</li>
+<li>Address label imbalance by incorporating oversampling techniques or alternative loss functions.</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Expanded Analysis:</strong></li>
+</ol>
+<ul>
+<li>Extend the dataset to include additional subreddits and external advice-seeking platforms for broader generalization.</li>
+<li>Analyze temporal trends in judgment patterns to identify shifts in societal norms.</li>
+</ul>
+<p>By bridging traditional and modern advice-seeking platforms, this project lays the groundwork for understanding the evolving dynamics of digital discourse and its implications for societal trends.</p>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A project by Team 27 (Fall 2024).</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Made with <a href="https://quarto.org/">Quarto</a><br> <a href="https://github.com/gu-dsan6000/fall-2024-project-team-27">View the source at Github</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

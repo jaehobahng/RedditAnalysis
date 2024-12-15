@@ -1,0 +1,75 @@
+---
+title: "Introduction"
+---
+
+## The Evolution of Advice-Seeking
+
+What should a mother do if she discovers her son is dating her best friend? How should a husband navigate the collapse of a decades-long marriage without the support of friends or family? What advice can a wife seek after finding her husband in an unexpected betrayal? Whether dealing with extraordinary dilemmas or everyday difficulties, people often search for objective opinions beyond what close friends and family might offer.
+
+For over half a century, advice columns like **Dear Abby** have served as cultural cornerstones, providing public forums for private concerns. From its inception in 1956, Dear Abby offered concise, empathetic counsel on personal and social issues, reflecting the values and anxieties of the time. With its national reach, the column became a unique lens into the moral and cultural fabric of America.
+
+In the digital age, platforms like Reddit have transformed advice-seeking into a global, participatory experience. Subreddits such as [r/AmItheAsshole](https://www.reddit.com/r/AmItheAsshole/), [r/AskReddit](https://www.reddit.com/r/AskReddit/), and [r/AmIOverreacting](https://www.reddit.com/r/AmIOverreacting/) offer spaces where users can share their dilemmas and receive feedback from a diverse and anonymous audience. These digital communities allow individuals to interact in real-time, reshaping how advice is sought and delivered.
+
+## Why These Platforms?
+
+Reddit is a vast and diverse community where users can anonymously ask questions and receive opinions almost instantaneously. Subreddits like [r/AmItheAsshole](https://www.reddit.com/r/AmItheAsshole/) (AITA) exemplify this dynamic, providing structured spaces for moral judgment. AITA is particularly suited for analysis, as its inherently labeled data (e.g., “You’re the Asshole” or “Not the Asshole”) enables predictive modeling of community judgments.
+
+![r/AmITheAsshole is a space where users share morally complex situations and ask the community for judgment.](images/introduction/aitah.png)
+
+To expand beyond AITA, we included [r/AmIOverreacting](https://www.reddit.com/r/AmIOverreacting/) (AIOR), another subreddit with a similar structure where users seek validation on whether their emotional responses are justified. Like AITA, AIOR posts often receive labeled judgments, such as “Overreacting” or “Not Overreacting,” making it equally rich for analysis. 
+
+![r/AmIOverreacting provides a platform for people to validate their emotional responses to situations.](images/introduction/aior.png)
+
+As a baseline for comparison, we also included [r/AskReddit](https://www.reddit.com/r/AskReddit/), a general forum for open-ended questions. Unlike AITA and AIOR, r/AskReddit encourages broad discussions and diverse opinions, often focused on life challenges or social dilemmas.
+
+![r/AskReddit serves as a general forum for open-ended questions about life and social issues.](images/introduction/askreddit.png)
+
+Additionally, we incorporated **Dear Abby** columns as external data to compare traditional advice-seeking to its modern, anonymous counterpart on Reddit. This comparison enables us to explore whether anonymity influences the topics and tone of advice-seeking questions. Although the timeframes for these datasets differ (Dear Abby spans 1985–2017, while Reddit data covers 2023–2024), our focus is not on temporal trends but on thematic and platform-driven differences. Future work may explore the influence of time more comprehensively.
+
+## The Project
+
+This project investigates advice-seeking behaviors across modern and traditional platforms to explore how themes, sentiment, and user judgments differ. Using a combination of Exploratory Data Analysis (EDA), Natural Language Processing (NLP), and Machine Learning (ML), we analyze the similarities and differences between Reddit subreddits like [r/AmItheAsshole](https://www.reddit.com/r/AmItheAsshole/), [r/AmIOverreacting](https://www.reddit.com/r/AmIOverreacting/), and [r/AskReddit](https://www.reddit.com/r/AskReddit/), and the iconic Dear Abby advice column.
+
+By comparing these platforms, we aim to uncover insights into how anonymity, platform design, and audience engagement shape the way people seek and respond to advice. The following goals provide a detailed roadmap for our analysis.
+
+## Project Goals (Appendix)
+
+1. **Exploratory Data Analysis: Understanding User Behavior**
+   - **Business goal**: Gain insights into user behavior and engagement patterns across r/AmItheAsshole, r/AskReddit, and r/AmIOverreacting.
+   - **Technical proposal**: Conduct EDA by analyzing metrics such as post frequency, comment counts, upvotes, and user activity levels. Visualize engagement trends over time to understand the growth and evolution of these subreddits. Identify peak engagement periods and explore correlations with major cultural or social events.
+
+2. **Topic Modeling Across Subreddits**
+   - **Business goal**: Identify and compare common topics discussed on r/AmItheAsshole, r/AskReddit, and r/AmIOverreacting, as well as Dear Abby columns.
+   - **Technical proposal**: Use NLP techniques such as Latent Dirichlet Allocation (LDA) to perform topic modeling on each subreddit and Dear Abby articles. Compare key topics across platforms to analyze shifts in advice-seeking behavior over time. Perform sentiment analysis on identified topics to uncover emotional trends within specific topics.
+
+3. **Predicting User Judgment (YTA/NTA)**
+   - **Business goal**: Predict whether a user on r/AmItheAsshole will be judged as "You're the Asshole (YTA)" or "Not the Asshole (NTA)" based on post content.
+   - **Technical proposal**: Preprocess text data to clean and tokenize posts. Build and train a classification model using techniques like logistic regression, SVM, or neural networks. Use features such as word embeddings (e.g., Word2Vec or BERT) and text-based metrics. Evaluate model performance using accuracy, precision, recall, and F1 score, and use explainability tools like SHAP to understand key predictors.
+
+4. **Sentiment Analysis of Post Titles and Comments**
+   - **Business goal**: Understand the overall sentiment of posts and comments on r/AmItheAsshole and compare it with r/AskReddit and Dear Abby.
+   - **Technical proposal**: Use sentiment analysis tools to determine the polarity (positive, neutral, negative) of post titles and comments. Perform comparative analysis across subreddits and between Reddit data and Dear Abby responses. Explore patterns in sentiment distribution for posts with different judgments (e.g., YTA, NTA).
+
+5. **Language Differences Between Judgments (YTA/NTA)**
+   - **Business goal**: Identify linguistic patterns that differentiate posts judged as YTA or NTA.
+   - **Technical proposal**: Use NLP techniques such as TF-IDF, n-gram analysis, and word embeddings to find distinguishing words and phrases used in YTA vs. NTA posts. Compare language complexity, sentiment, and unique terms across posts. Use clustering techniques to group posts with similar linguistic characteristics.
+
+6. **Analyzing Comment Response Patterns to Posts**
+   - **Business goal**: Understand how the Reddit community's responses differ based on the type of posts (e.g., YTA vs. NTA) on r/AmItheAsshole.
+   - **Technical proposal**: Analyze the comment structure, volume, and sentiment of responses to posts labeled YTA versus NTA. Measure metrics such as comment depth, engagement duration, and frequency of emotionally charged language. Use clustering to group posts with similar engagement patterns and explore how initial judgments influence subsequent community reactions.
+
+7. **Identifying Common Themes Across Judgments**
+   - **Business goal**: Explore recurring themes in posts judged as YTA and NTA on r/AmItheAsshole.
+   - **Technical proposal**: Use NLP topic modeling methods like Latent Dirichlet Allocation (LDA) or Non-negative Matrix Factorization (NMF) to identify and compare common themes across YTA and NTA posts. Examine the distribution and frequency of topics for each judgment category and analyze associated keywords. Use clustering techniques to group similar posts based on identified themes and explore potential correlations with post metadata (e.g., engagement levels).
+
+8. **User Sentiment Over Time**
+   - **Business goal**: Analyze how user sentiment on advice-seeking subreddits has changed over time.
+   - **Technical proposal**: Aggregate sentiment scores for posts and comments by month/year. Visualize trends in positive, negative, and neutral sentiment over time. Perform hypothesis testing to identify significant changes in sentiment distribution during notable periods (e.g., pandemics, economic crises).
+
+9. **Exploring Gender Differences in Post Content**
+   - **Business goal**: Identify potential gender-based differences in advice-seeking behavior and language use.
+   - **Technical proposal**: Use text classification models to predict likely gender based on text content (if data allows gender inference). Compare word usage, sentiment, and engagement metrics between male- and female-coded posts. Investigate differences in judgment outcomes (YTA/NTA) based on inferred gender.
+
+10. **Comparing Advice Quality Over Time**
+    - **Business goal**: Examine whether the quality and content of advice provided on Reddit has evolved over time compared to historical Dear Abby columns.
+    - **Technical proposal**: Use NLP to assess the complexity and sentiment of advice over time by evaluating word usage, length, sentiment score, and syntactic complexity. Train models to categorize advice as supportive, critical, neutral, or informational. Compare these metrics across different periods and between Reddit and Dear Abby responses to assess changes in advice tone, specificity, and style.

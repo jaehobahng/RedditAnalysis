@@ -1,0 +1,72 @@
+---
+title: Discussion
+format:
+  html
+---
+
+# Project Plans
+
+## Feedback Received:
+
+* **Instructor Feedback:** “Interesting choice of topic. However, you cannot (and I repeat - cannot) just use a single subreddit. You must figure out a way of finding and including data from across the corpus leveraging NLP tools.”
+* **Instructor Feedback:** “You also must include external data.”
+
+## Actions Taken:
+
+* We expanded our dataset to include three subreddits: AmItheAsshole, AmIOverreacting, and AskReddit, representing different types of advice-seeking behavior. This allowed for broader analysis and comparisons across platforms.
+* We incorporated external data by including the Dear Abby advice column dataset, enabling comparisons between modern and traditional advice-seeking platforms.
+
+# EDA Work
+
+## Feedback Received:
+
+* **Peer Feedback:** “The EDA should have more structured goals to guide the analysis.”
+* **Peer Feedback:** “Make sure your EDA focuses on telling a coherent story rather than just exploring random trends.”
+* **Instructor Feedback:** “Highlight how Reddit’s popularity compares to Dear Abby and emphasize the dynamics of newer subreddits like AmIOverreacting.”
+
+## Actions Taken:
+
+* We refined our EDA goals to focus on specific questions, such as seasonal and hourly posting patterns, the popularity of subreddits, and engagement metrics.
+* The analysis was structured to emphasize the comparison between Reddit and Dear Abby and the dynamics of newer subreddits like AmIOverreacting. This ensured a more coherent narrative and actionable insights.
+
+# NLP Work
+
+## Feedback Received:
+
+* **Instructor Feedback:** “Don’t just stick to one topic modeling method. Experiment with multiple approaches to find what works best for your dataset.”
+* **Peer Feedback:** “Your topic modeling results could benefit from more detailed comparisons across subreddits.”
+* **Peer Feedback:** “Try to align the topic modeling findings with user sentiment and judgment labels for a richer analysis.”
+
+## Actions Taken:
+
+* We tested multiple topic modeling methods, including TF-IDF, Latent Semantic Analysis (LSA), and Non-Negative Matrix Factorization (NMF), ultimately selecting NMF for its superior interpretability and performance.
+* Detailed comparisons of topic distributions across subreddits were included to highlight the thematic differences between platforms like AskReddit, AmItheAsshole, and Dear Abby.
+* Sentiment and judgment labels were integrated into the topic analysis, allowing us to explore correlations and draw deeper insights.
+
+# ML Work
+
+## Feedback Received:
+
+* **Instructor Feedback:** “Focus on explaining your models’ performance and feature importance to provide actionable insights.”
+* **Peer Feedback:** “Consider balancing your data and addressing any ambiguous labels to improve model performance.”
+* **Peer Feedback:** “It might be interesting to explore how sentiment scores and topics contribute to predicting community judgments.”
+
+## Actions Taken:
+
+* We addressed ambiguous labels (e.g., ESH in AITA and “Unclear” in AIO) by removing them, ensuring clearer and more reliable training data.
+* Feature importance analysis was conducted, highlighting the impact of sentiment scores, topics, and engagement metrics on model predictions.
+* Performance metrics such as precision, recall, and AUC scores were emphasized to communicate model strengths and weaknesses effectively.
+
+# Website/Results
+
+## Feedback Received:
+
+* **Instructor Feedback:** “Ensure that your website is easy to navigate and that results are presented clearly and visually.”
+* **Peer Feedback:** “Consider adding more detailed captions and context for graphs and tables to make the results self-explanatory.”
+* **Peer Feedback:** “Highlight key takeaways from each section to help viewers quickly understand the main points.”
+
+## Actions Taken:
+
+* The website was structured into clearly defined sections (e.g., EDA, NLP, ML, Discussion), with intuitive navigation and a consistent format.
+* Detailed captions and explanations were added to all graphs and tables, ensuring they could be understood independently.
+* Key takeaways were summarized at the end of each section to reinforce the main points and improve the user experience.

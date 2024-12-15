@@ -1,0 +1,50 @@
+project:
+  type: website
+  output-dir: ../docs
+
+website:
+  back-to-top-navigation: true
+  reader-mode: true
+  title: "Project Team 27"
+  navbar:
+    background: "#3c563c"
+    left:
+      - text: Project
+        href: index.qmd
+      - text: Code and Data
+        href: https://github.com/gu-dsan6000/fall-2024-project-team-27
+      - text: Authors
+        href: secondary/authors.qmd       
+      - text: References
+        href: secondary/references.qmd
+  
+  page-footer:
+    left: |
+      A project by {{< var author.name >}}.
+    right: |
+      Made with [Quarto](https://quarto.org/)<br>
+      [View the source at Github](https://github.com/gu-dsan6000/fall-2024-project-team-27)
+
+  sidebar: 
+   background: "#e7f6ef"
+   style: "docked"
+   search: true
+   collapse-level: 2
+   align: left
+   contents:
+    - index.qmd
+    - eda_reddit_external.qmd
+    - NLP.qmd
+    - ml_models.qmd
+    - discussion.qmd
+    - conclusion.qmd
+
+format:
+  html:
+    theme: minty
+    css: styles.css
+    toc: true
+    link-external-newwindow: true
+
+
+

@@ -1,0 +1,450 @@
+[
+  {
+    "objectID": "secondary/references.html",
+    "href": "secondary/references.html",
+    "title": "References",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "secondary/authors.html",
+    "href": "secondary/authors.html",
+    "title": "Authors",
+    "section": "",
+    "text": "This project is made possible by the hard work of JaeHo Bahng, Kang Liu, Billy McGloin, & Zining Wang!\n\n\n\nThanks for reading! Image created using DALL-E by OpenAI.\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "ml_models.html",
+    "href": "ml_models.html",
+    "title": "Machine Learning",
+    "section": "",
+    "text": "In this section, we leverage machine learning to predict community judgments on two advice-seeking subreddits, AmItheAsshole (AITA) and AmIOverreacting (AIO). Using structured feedback labels such as YTA/NTA and OOR/NOR, we trained models to analyze the underlying topical, sentiment, and engagement features driving user responses. Our goal is to uncover whether community judgments can be accurately predicted based on post metadata and derived features, offering insights into the dynamics of online discourse.\nTo achieve this, we built and evaluated XGBoost and Random Forest models for each subreddit, incorporating key features identified during EDA, including post topics, sentiment scores, and engagement metrics (e.g., post scores and comment counts). These models help us understand not only the accuracy of predictions but also the relative importance of different features in shaping community outcomes.\nKey findings reveal that both models perform well in predicting judgments, with Random Forest performing better within AmIOverreacting and XGBoost performing better within AmItheAsshole. Feature importance analysis highlights that post score and the number of comments were among the strongest predictors across both subreddits. For AIO, the enhanced labeling system we developed plays a critical role in generating reliable training data, enabling the model to accurately differentiate between “Overreacting” and “Not Overreacting” posts.\nThis work demonstrates the power of machine learning in analyzing large-scale social media data, offering practical applications for community moderation and understanding societal trends in judgment and advice-seeking behaviors. The results provide a strong foundation for further exploration of how these platforms shape and reflect public discourse."
+  },
+  {
+    "objectID": "ml_models.html#data-cleaning-and-preprocessing",
+    "href": "ml_models.html#data-cleaning-and-preprocessing",
+    "title": "Machine Learning",
+    "section": "Data Cleaning and Preprocessing",
+    "text": "Data Cleaning and Preprocessing\n\nAITA Labels: The AITA subreddit includes structured feedback labels (YTA, NTA, ESH, etc.) directly from user comments. These labels were cleaned and aggregated to assign a single label per post, representing the majority vote.\nAIO Labels: Since AIO does not always use predefined labels, we created a labeling system that is outlined below:\n\n\nSince AIO does not always use predefined labels, we developed a robust labeling system to classify posts as “Overreacting,” “Not Overreacting,” or “Unclear.” This system relies on analyzing the top 10 ranked comments for each post, which were identified based on their engagement scores (e.g., upvotes). By focusing on the most relevant and visible comments, we ensured that the labeling reflected the general sentiment of the community rather than outliers.\nTo classify the posts, we implemented keyword matching on the comment text using predefined patterns for each label category. For instance, terms such as “valid reaction” or “not overreacting” were associated with the “Not Overreacting” label, while phrases like “blown out of proportion” or “overreacting” indicated the “Overreacting” label. We also used advanced regex patterns to ensure accuracy by avoiding partial matches or misclassifications (e.g., distinguishing “not overreacting” from “overreacting”).\nOnce individual comment labels were generated, a majority vote system was applied across the top 10 comments to determine the final label for each post. If “Not Overreacting” comments outnumbered “Overreacting” comments, the post was labeled as “Not Overreacting,” and vice versa. Posts where neither label achieved a clear majority, or where labels were ambiguous, were classified as “Unclear.”\nThis method ensured that labels were derived systematically and consistently, capturing the consensus of the AIO community while minimizing noise from outlier comments. By doing so, we created reliable training data for the machine learning models, enabling accurate predictions of community judgments."
+  },
+  {
+    "objectID": "ml_models.html#feature-engineering",
+    "href": "ml_models.html#feature-engineering",
+    "title": "Machine Learning",
+    "section": "Feature Engineering",
+    "text": "Feature Engineering\nKey features for the models were derived from both post content and metadata:\n\nPost Sentiment Scores: Sentiment scores were calculated using a pre-trained sentiment analysis model, quantifying the emotional tone of each post.\nPost Topics: Topics were extracted using Non-Negative Matrix Factorization (NMF), as detailed in the NLP section. Each post was assigned a dominant topic to incorporate thematic insights.\nEngagement Metrics: Features such as post score, number of comments, and time since posting were included to capture user engagement levels.\nReddit Metadata: Additional features, such as the day and hour of posting, were included based on trends observed in the EDA."
+  },
+  {
+    "objectID": "ml_models.html#data-splits",
+    "href": "ml_models.html#data-splits",
+    "title": "Machine Learning",
+    "section": "Data Splits",
+    "text": "Data Splits\nThe datasets for both subreddits were split into training (80%) and test (20%) sets. This division ensures robust evaluation of the models on unseen data while preventing overfitting."
+  },
+  {
+    "objectID": "ml_models.html#addressing-imbalanced-data",
+    "href": "ml_models.html#addressing-imbalanced-data",
+    "title": "Machine Learning",
+    "section": "Addressing Imbalanced Data",
+    "text": "Addressing Imbalanced Data\nIn both subreddits, labels such as ESH in AITA and “Unclear” in AIO were either ambiguous or underrepresented. Rather than attempting to model these minority classes, we chose to remove them from the dataset. This decision ensured that the machine learning models could focus on clear and well-defined labels, such as YTA and NTA in AITA, and “Overreacting” and “Not Overreacting” in AIO.\nBy eliminating these ambiguous labels, we streamlined the dataset, improving the clarity and reliability of the training process. This allowed us to focus on patterns and features relevant to the dominant community judgments without introducing noise or complexity from poorly defined categories."
+  },
+  {
+    "objectID": "ml_models.html#summary",
+    "href": "ml_models.html#summary",
+    "title": "Machine Learning",
+    "section": "Summary",
+    "text": "Summary\nThis data preparation pipeline ensures that the input features capture the thematic, sentimental, and engagement-related nuances of each subreddit. By incorporating sentiment analysis, topic modeling, and metadata, the models are equipped to make informed predictions about community judgments."
+  },
+  {
+    "objectID": "ml_models.html#model-overview",
+    "href": "ml_models.html#model-overview",
+    "title": "Machine Learning",
+    "section": "Model Overview",
+    "text": "Model Overview\nTo predict community judgments on the AmIOverreacting (AIO) subreddit, we employed two machine learning models: Random Forest and XGBoost. These models were selected for their ability to handle structured data effectively and their robust performance in classification tasks. Both models leveraged features such as post sentiment scores, topics, engagement metrics, and metadata, as outlined in the feature engineering section.\nThe models aimed to classify posts into two categories: Overreacting and Not Overreacting. The enhanced labeling system discussed earlier provided reliable training data for this task."
+  },
+  {
+    "objectID": "ml_models.html#model-performance",
+    "href": "ml_models.html#model-performance",
+    "title": "Machine Learning",
+    "section": "Model Performance",
+    "text": "Model Performance\nThe performance of each model was evaluated using standard classification metrics, including precision, recall, F1-score, and accuracy. Below is the classification report for both models, which highlights their respective strengths and weaknesses.\nRandom Forest Classification Report:\n                  precision    recall  f1-score   support\n\nNot Overreacting       0.67      0.91      0.77       172\n    Overreacting       0.78      0.43      0.55       134\n\n        accuracy                           0.70       306\n       macro avg       0.73      0.67      0.66       306\n    weighted avg       0.72      0.70      0.67       306\n\nXGBoost Classification Report:\n                  precision    recall  f1-score   support\n\nNot Overreacting       0.69      0.80      0.74       172\n    Overreacting       0.68      0.54      0.60       134\n\n        accuracy                           0.69       306\n       macro avg       0.68      0.67      0.67       306\n    weighted avg       0.69      0.69      0.68       306\n\n\nRandom Forest Kappa Score: 0.34994746219562345\nXGBoost Kappa Score: 0.34766388346065025\nFrom the classification reports:\n\nThe Random Forest model achieved higher overall accuracy (70%) compared to XGBoost (69%).\nRandom Forest demonstrated strong performance in identifying “Not Overreacting” posts, with a recall of 0.91 and an F1-score of 0.77.\nXGBoost performed more evenly across both labels but struggled with “Overreacting” posts, achieving a recall of only 0.54."
+  },
+  {
+    "objectID": "ml_models.html#confusion-matrices",
+    "href": "ml_models.html#confusion-matrices",
+    "title": "Machine Learning",
+    "section": "Confusion Matrices",
+    "text": "Confusion Matrices\nTo further analyze the models’ predictions, confusion matrices were generated for both Random Forest and XGBoost. These matrices provide insights into how well each model correctly classified the labels and where misclassifications occurred.\n\n\n\nAIO Confusion Matrices\n\n\nKey observations:\n\nRandom Forest excelled in identifying “Not Overreacting” posts, with only 16 misclassifications out of 172 true examples.\nXGBoost, while slightly less accurate, demonstrated a more balanced approach, with fewer extreme discrepancies between the two labels."
+  },
+  {
+    "objectID": "ml_models.html#roc-curve-analysis",
+    "href": "ml_models.html#roc-curve-analysis",
+    "title": "Machine Learning",
+    "section": "ROC Curve Analysis",
+    "text": "ROC Curve Analysis\nThe Receiver Operating Characteristic (ROC) curve evaluates the trade-off between the true positive rate (sensitivity) and false positive rate for both models. The AUC (Area Under the Curve) scores provide a comprehensive measure of model performance.\n\n\n\nAIO ROC Curve\n\n\nInsights from the ROC analysis:\n\nThe Random Forest model achieved a higher AUC score (0.72) compared to XGBoost (0.68), indicating superior overall performance.\nBoth models outperformed random guessing, demonstrating their ability to capture meaningful patterns in the data."
+  },
+  {
+    "objectID": "ml_models.html#feature-importance",
+    "href": "ml_models.html#feature-importance",
+    "title": "Machine Learning",
+    "section": "Feature Importance",
+    "text": "Feature Importance\nFeature importance analysis revealed that post score and number of comments were among the strongest predictors for both models. Sentiment scores and post topics also played significant roles, highlighting the importance of combining content, engagement, and metadata features in predicting community judgments."
+  },
+  {
+    "objectID": "ml_models.html#summary-1",
+    "href": "ml_models.html#summary-1",
+    "title": "Machine Learning",
+    "section": "Summary",
+    "text": "Summary\nThe AIO models demonstrate the feasibility of predicting community judgments based on a combination of textual and engagement-related features. While the Random Forest model showed slightly better performance overall, both models provide valuable insights into the factors driving user responses on the AIO subreddit. These findings lay the groundwork for future applications, such as improving content moderation or understanding community dynamics on advice-seeking platforms."
+  },
+  {
+    "objectID": "ml_models.html#model-overview-1",
+    "href": "ml_models.html#model-overview-1",
+    "title": "Machine Learning",
+    "section": "Model Overview",
+    "text": "Model Overview\nFor the AmItheAsshole (AITA) subreddit, we employed Random Forest and XGBoost models to classify posts based on community judgments. Unlike AIO, AITA includes multiple structured feedback labels such as YTA (You’re the Ahole), NTA (Not the Ahole), ESH (Everyone Sucks Here), NAH (No Aholes Here), and INFO (Not Enough Info). However, due to significant imbalances in the distribution of these labels, we focused on the dominant classes, YTA and NTA, for our predictive modeling."
+  },
+  {
+    "objectID": "ml_models.html#model-performance-1",
+    "href": "ml_models.html#model-performance-1",
+    "title": "Machine Learning",
+    "section": "Model Performance",
+    "text": "Model Performance\nThe performance of both models was evaluated using standard classification metrics. Below are the classification reports for Random Forest and XGBoost:\nRandom Forest Classification Report:\n              precision    recall  f1-score   support\n\n         YTA       0.72      0.52      0.60      7387\n         NTA       0.59      0.84      0.69      7012\n\n    accuracy                           0.63     15352\n   macro avg       0.26      0.27      0.26     15352\nweighted avg       0.61      0.63      0.60     15352\n\nXGBoost Classification Report:\n              precision    recall  f1-score   support\n\n         YTA       0.71      0.62      0.66      7387\n         NTA       0.64      0.81      0.71      7012\n\n    accuracy                           0.67     15352\n   macro avg       0.27      0.29      0.27     15352\nweighted avg       0.63      0.67      0.64     15352\n\n\nRandom Forest Kappa Score: 0.3125477758880384\nXGBoost Kappa Score: 0.37599140374591733\n\nKey observations:\n\nXGBoost outperformed Random Forest with an accuracy of 67% compared to 63%.\nXGBoost demonstrated higher precision for NTA and higher recall for YTA, reflecting a balanced performance."
+  },
+  {
+    "objectID": "ml_models.html#confusion-matrices-1",
+    "href": "ml_models.html#confusion-matrices-1",
+    "title": "Machine Learning",
+    "section": "Confusion Matrices",
+    "text": "Confusion Matrices\nThe confusion matrices below provide a detailed look at the distribution of predictions for both models:\n\n\n\nAITA Confusion Matrces\n\n\n\nKey observations:\n\nRandom Forest had difficulty predicting YTA, with a relatively high number of false negatives misclassified as NTA.\nXGBoost improved on this by capturing more correct YTA classifications while maintaining strong performance on NTA predictions."
+  },
+  {
+    "objectID": "ml_models.html#roc-curve-analysis-1",
+    "href": "ml_models.html#roc-curve-analysis-1",
+    "title": "Machine Learning",
+    "section": "ROC Curve Analysis",
+    "text": "ROC Curve Analysis\nThe ROC curves highlight the models’ ability to balance sensitivity and specificity:\n\n\n\nAITA ROC Curve\n\n\nInsights from the ROC analysis:\n\nXGBoost achieved a higher AUC score (0.67) compared to Random Forest (0.63), indicating better overall performance.\nBoth models performed well above the random baseline, demonstrating their ability to leverage meaningful patterns in the data."
+  },
+  {
+    "objectID": "ml_models.html#feature-importance-1",
+    "href": "ml_models.html#feature-importance-1",
+    "title": "Machine Learning",
+    "section": "Feature Importance",
+    "text": "Feature Importance\nFeature importance analysis revealed that post score, number of comments, and sentiment score were the most significant predictors across both models. This aligns with earlier findings in EDA and NLP, where these features were identified as key drivers of community engagement."
+  },
+  {
+    "objectID": "ml_models.html#summary-2",
+    "href": "ml_models.html#summary-2",
+    "title": "Machine Learning",
+    "section": "Summary",
+    "text": "Summary\nThe AITA models underscore the potential for machine learning to predict community judgments in multi-label settings. While XGBoost emerged as the better-performing model, both models highlighted key features influencing user responses. Future work could focus on handling of underrepresented labels and exploring advanced techniques such as multi-label classification."
+  },
+  {
+    "objectID": "ml_models.html#key-findings",
+    "href": "ml_models.html#key-findings",
+    "title": "Machine Learning",
+    "section": "Key Findings:",
+    "text": "Key Findings:\n\nAIO Results:\n\n\nRandom Forest performed slightly better in predicting “Overreacting” and “Not Overreacting” judgments, with an accuracy of 70%.\nPost score and comment count emerged as the most influential predictors, emphasizing the role of engagement metrics.\n\n\nAITA Results:\n\n\nXGBoost outperformed Random Forest, achieving 67% accuracy for the labels (YTA and NTA).\nPost score, comment count, and sentiment score were the most influential predictors."
+  },
+  {
+    "objectID": "ml_models.html#next-steps",
+    "href": "ml_models.html#next-steps",
+    "title": "Machine Learning",
+    "section": "Next Steps:",
+    "text": "Next Steps:\n\nModel Improvements:\n\n\nExperiment with advanced NLP techniques, such as transformers, to capture deeper contextual relationships in post text.\nAddress label imbalance by incorporating oversampling techniques or alternative loss functions.\n\n\nExpanded Analysis:\n\n\nExtend the dataset to include additional subreddits and external advice-seeking platforms for broader generalization.\nAnalyze temporal trends in judgment patterns to identify shifts in societal norms.\n\nBy bridging traditional and modern advice-seeking platforms, this project lays the groundwork for understanding the evolving dynamics of digital discourse and its implications for societal trends."
+  },
+  {
+    "objectID": "images/ml/tables.html",
+    "href": "images/ml/tables.html",
+    "title": "AITA",
+    "section": "",
+    "text": "AITA\nRandom Forest Classification Report:\n              precision    recall  f1-score   support\n\n         YTA       0.72      0.52      0.60      7387\n         NTA       0.59      0.84      0.69      7012\n         ESH       0.00      0.00      0.00       383\n         NAH       0.00      0.00      0.00       317\n        INFO       0.00      0.00      0.00       253\n\n    accuracy                           0.63     15352\n   macro avg       0.26      0.27      0.26     15352\nweighted avg       0.61      0.63      0.60     15352\n\nXGBoost Classification Report:\n              precision    recall  f1-score   support\n\n         YTA       0.71      0.62      0.66      7387\n         NTA       0.64      0.81      0.71      7012\n         ESH       0.00      0.00      0.00       383\n         NAH       0.00      0.00      0.00       317\n        INFO       0.00      0.00      0.00       253\n\n    accuracy                           0.67     15352\n   macro avg       0.27      0.29      0.27     15352\nweighted avg       0.63      0.67      0.64     15352\n\n\nRandom Forest Kappa Score: 0.3125477758880384\nXGBoost Kappa Score: 0.37599140374591733\n\n\nAIO\nRandom Forest Classification Report:\n                  precision    recall  f1-score   support\n\nNot Overreacting       0.67      0.91      0.77       172\n    Overreacting       0.78      0.43      0.55       134\n\n        accuracy                           0.70       306\n       macro avg       0.73      0.67      0.66       306\n    weighted avg       0.72      0.70      0.67       306\n\nXGBoost Classification Report:\n                  precision    recall  f1-score   support\n\nNot Overreacting       0.69      0.80      0.74       172\n    Overreacting       0.68      0.54      0.60       134\n\n        accuracy                           0.69       306\n       macro avg       0.68      0.67      0.67       306\n    weighted avg       0.69      0.69      0.68       306\n\n\nRandom Forest Kappa Score: 0.34994746219562345\nXGBoost Kappa Score: 0.34766388346065025\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "discussion.html",
+    "href": "discussion.html",
+    "title": "Discussion",
+    "section": "",
+    "text": "Instructor Feedback: “Interesting choice of topic. However, you cannot (and I repeat - cannot) just use a single subreddit. You must figure out a way of finding and including data from across the corpus leveraging NLP tools.”\nInstructor Feedback: “You also must include external data.”\n\n\n\n\n\nWe expanded our dataset to include three subreddits: AmItheAsshole, AmIOverreacting, and AskReddit, representing different types of advice-seeking behavior. This allowed for broader analysis and comparisons across platforms.\nWe incorporated external data by including the Dear Abby advice column dataset, enabling comparisons between modern and traditional advice-seeking platforms."
+  },
+  {
+    "objectID": "discussion.html#feedback-received",
+    "href": "discussion.html#feedback-received",
+    "title": "Discussion",
+    "section": "",
+    "text": "Instructor Feedback: “Interesting choice of topic. However, you cannot (and I repeat - cannot) just use a single subreddit. You must figure out a way of finding and including data from across the corpus leveraging NLP tools.”\nInstructor Feedback: “You also must include external data.”"
+  },
+  {
+    "objectID": "discussion.html#actions-taken",
+    "href": "discussion.html#actions-taken",
+    "title": "Discussion",
+    "section": "",
+    "text": "We expanded our dataset to include three subreddits: AmItheAsshole, AmIOverreacting, and AskReddit, representing different types of advice-seeking behavior. This allowed for broader analysis and comparisons across platforms.\nWe incorporated external data by including the Dear Abby advice column dataset, enabling comparisons between modern and traditional advice-seeking platforms."
+  },
+  {
+    "objectID": "discussion.html#feedback-received-1",
+    "href": "discussion.html#feedback-received-1",
+    "title": "Discussion",
+    "section": "Feedback Received:",
+    "text": "Feedback Received:\n\nPeer Feedback: “The EDA should have more structured goals to guide the analysis.”\nPeer Feedback: “Make sure your EDA focuses on telling a coherent story rather than just exploring random trends.”\nInstructor Feedback: “Highlight how Reddit’s popularity compares to Dear Abby and emphasize the dynamics of newer subreddits like AmIOverreacting.”"
+  },
+  {
+    "objectID": "discussion.html#actions-taken-1",
+    "href": "discussion.html#actions-taken-1",
+    "title": "Discussion",
+    "section": "Actions Taken:",
+    "text": "Actions Taken:\n\nWe refined our EDA goals to focus on specific questions, such as seasonal and hourly posting patterns, the popularity of subreddits, and engagement metrics.\nThe analysis was structured to emphasize the comparison between Reddit and Dear Abby and the dynamics of newer subreddits like AmIOverreacting. This ensured a more coherent narrative and actionable insights."
+  },
+  {
+    "objectID": "discussion.html#feedback-received-2",
+    "href": "discussion.html#feedback-received-2",
+    "title": "Discussion",
+    "section": "Feedback Received:",
+    "text": "Feedback Received:\n\nInstructor Feedback: “Don’t just stick to one topic modeling method. Experiment with multiple approaches to find what works best for your dataset.”\nPeer Feedback: “Your topic modeling results could benefit from more detailed comparisons across subreddits.”\nPeer Feedback: “Try to align the topic modeling findings with user sentiment and judgment labels for a richer analysis.”"
+  },
+  {
+    "objectID": "discussion.html#actions-taken-2",
+    "href": "discussion.html#actions-taken-2",
+    "title": "Discussion",
+    "section": "Actions Taken:",
+    "text": "Actions Taken:\n\nWe tested multiple topic modeling methods, including TF-IDF, Latent Semantic Analysis (LSA), and Non-Negative Matrix Factorization (NMF), ultimately selecting NMF for its superior interpretability and performance.\nDetailed comparisons of topic distributions across subreddits were included to highlight the thematic differences between platforms like AskReddit, AmItheAsshole, and Dear Abby.\nSentiment and judgment labels were integrated into the topic analysis, allowing us to explore correlations and draw deeper insights."
+  },
+  {
+    "objectID": "discussion.html#feedback-received-3",
+    "href": "discussion.html#feedback-received-3",
+    "title": "Discussion",
+    "section": "Feedback Received:",
+    "text": "Feedback Received:\n\nInstructor Feedback: “Focus on explaining your models’ performance and feature importance to provide actionable insights.”\nPeer Feedback: “Consider balancing your data and addressing any ambiguous labels to improve model performance.”\nPeer Feedback: “It might be interesting to explore how sentiment scores and topics contribute to predicting community judgments.”"
+  },
+  {
+    "objectID": "discussion.html#actions-taken-3",
+    "href": "discussion.html#actions-taken-3",
+    "title": "Discussion",
+    "section": "Actions Taken:",
+    "text": "Actions Taken:\n\nWe addressed ambiguous labels (e.g., ESH in AITA and “Unclear” in AIO) by removing them, ensuring clearer and more reliable training data.\nFeature importance analysis was conducted, highlighting the impact of sentiment scores, topics, and engagement metrics on model predictions.\nPerformance metrics such as precision, recall, and AUC scores were emphasized to communicate model strengths and weaknesses effectively."
+  },
+  {
+    "objectID": "discussion.html#feedback-received-4",
+    "href": "discussion.html#feedback-received-4",
+    "title": "Discussion",
+    "section": "Feedback Received:",
+    "text": "Feedback Received:\n\nInstructor Feedback: “Ensure that your website is easy to navigate and that results are presented clearly and visually.”\nPeer Feedback: “Consider adding more detailed captions and context for graphs and tables to make the results self-explanatory.”\nPeer Feedback: “Highlight key takeaways from each section to help viewers quickly understand the main points.”"
+  },
+  {
+    "objectID": "discussion.html#actions-taken-4",
+    "href": "discussion.html#actions-taken-4",
+    "title": "Discussion",
+    "section": "Actions Taken:",
+    "text": "Actions Taken:\n\nThe website was structured into clearly defined sections (e.g., EDA, NLP, ML, Discussion), with intuitive navigation and a consistent format.\nDetailed captions and explanations were added to all graphs and tables, ensuring they could be understood independently.\nKey takeaways were summarized at the end of each section to reinforce the main points and improve the user experience."
+  },
+  {
+    "objectID": "conclusion.html",
+    "href": "conclusion.html",
+    "title": "Conclusion",
+    "section": "",
+    "text": "Our analysis of advice-seeking platforms revealed fascinating patterns across Reddit subreddits (AmItheAsshole, AmIOverreacting, and AskReddit) and the Dear Abby advice column. By combining Exploratory Data Analysis (EDA), Natural Language Processing (NLP), and Machine Learning (ML), we identified significant differences in how users express themselves, seek validation, and respond to community judgments.\n\nPlatform Dynamics: Reddit’s popularity far surpasses that of Dear Abby, with individual subreddits like AskReddit generating more posts per month than the entirety of Dear Abby’s dataset. This highlights the rise of digital platforms as the primary space for modern advice-seeking behaviors.\nTopic and Sentiment Analysis: Our topic modeling uncovered thematic similarities between AITA, AIO, and Dear Abby, centered around relationships, friendships, and family dilemmas. However, AskReddit stood out with more generalized and diverse topics, reflecting its broader user base. Sentiment analysis revealed that certain themes, like pets or family issues, tend to elicit more negative responses, while weddings and marriage evoke relatively positive sentiment.\nPredictive Modeling: Using Random Forest and XGBoost models, we demonstrated that community judgments can be predicted with reasonable accuracy based on features like post sentiment, topics, and engagement metrics. Feature importance analysis highlighted post score and number of comments as critical predictors across subreddits.\n\nThese findings provide valuable insights into the evolving dynamics of advice-seeking, illustrating how platform structure and audience engagement influence the content and tone of online discourse.\n\n\nThe following figures illustrate the key findings from our analysis across Reddit subreddits and the Dear Abby dataset.\n\n\n\n\nRedditDear Abby\n\n\n\n\n\nMonthly Post Counts (Reddit)\n\n\n\n\n\n\n\nAggregated Number of Posts per Month from year 1985 to 2017 on Dear Abby\n\n\n\n\n\nThese first two graphs compare the volume of posts on Reddit and Dear Abby, highlighting the overwhelming dominance of Reddit as a platform for advice-seeking. The data shows how individual subreddits like AskReddit and AmItheAsshole far exceed the monthly activity of the traditional Dear Abby column.\n\n\n\n\nAmItheAssholeAmIOverreactingAskRedditDearAbby\n\n\n\n\n\nNMF topic modeling for AmItheAsshole\n\n\n\n\n\n\n\nNMF topic modeling for AmIOverreacting\n\n\n\n\n\n\n\nNMF topic modeling for AskReddit\n\n\n\n\n\n\n\nNMF topic modeling for DearAbby\n\n\n\n\n\nThe next four graphs demonstrate the results of topic modeling using Non-Negative Matrix Factorization (NMF) for AmItheAsshole, AmIOverreacting, AskReddit, and Dear Abby. These figures reveal thematic consistency across AITA, AIO, and Dear Abby, with common topics like relationships and friendships, while AskReddit showcases more diverse and generalized themes.\n\n\n\n\n\n\nSentiment and Judgment Correlation\n\n\nThe final graph explores the relationship between sentiment scores and community judgments in AmItheAsshole. It illustrates how topics like weddings and marriage often correspond to positive sentiment and lenient judgments, while posts about friends and pets are more likely to receive harsh criticism."
+  },
+  {
+    "objectID": "conclusion.html#supporting-figures",
+    "href": "conclusion.html#supporting-figures",
+    "title": "Conclusion",
+    "section": "",
+    "text": "The following figures illustrate the key findings from our analysis across Reddit subreddits and the Dear Abby dataset."
+  },
+  {
+    "objectID": "conclusion.html#monthly-post-counts-reddit-v.-dear-abby",
+    "href": "conclusion.html#monthly-post-counts-reddit-v.-dear-abby",
+    "title": "Conclusion",
+    "section": "",
+    "text": "RedditDear Abby\n\n\n\n\n\nMonthly Post Counts (Reddit)\n\n\n\n\n\n\n\nAggregated Number of Posts per Month from year 1985 to 2017 on Dear Abby\n\n\n\n\n\nThese first two graphs compare the volume of posts on Reddit and Dear Abby, highlighting the overwhelming dominance of Reddit as a platform for advice-seeking. The data shows how individual subreddits like AskReddit and AmItheAsshole far exceed the monthly activity of the traditional Dear Abby column."
+  },
+  {
+    "objectID": "conclusion.html#topic-modeling-across-platforms",
+    "href": "conclusion.html#topic-modeling-across-platforms",
+    "title": "Conclusion",
+    "section": "",
+    "text": "AmItheAssholeAmIOverreactingAskRedditDearAbby\n\n\n\n\n\nNMF topic modeling for AmItheAsshole\n\n\n\n\n\n\n\nNMF topic modeling for AmIOverreacting\n\n\n\n\n\n\n\nNMF topic modeling for AskReddit\n\n\n\n\n\n\n\nNMF topic modeling for DearAbby\n\n\n\n\n\nThe next four graphs demonstrate the results of topic modeling using Non-Negative Matrix Factorization (NMF) for AmItheAsshole, AmIOverreacting, AskReddit, and Dear Abby. These figures reveal thematic consistency across AITA, AIO, and Dear Abby, with common topics like relationships and friendships, while AskReddit showcases more diverse and generalized themes."
+  },
+  {
+    "objectID": "conclusion.html#sentiment-and-judgment-correlation",
+    "href": "conclusion.html#sentiment-and-judgment-correlation",
+    "title": "Conclusion",
+    "section": "",
+    "text": "Sentiment and Judgment Correlation\n\n\nThe final graph explores the relationship between sentiment scores and community judgments in AmItheAsshole. It illustrates how topics like weddings and marriage often correspond to positive sentiment and lenient judgments, while posts about friends and pets are more likely to receive harsh criticism."
+  },
+  {
+    "objectID": "conclusion.html#time-based-analysis",
+    "href": "conclusion.html#time-based-analysis",
+    "title": "Conclusion",
+    "section": "Time-Based Analysis",
+    "text": "Time-Based Analysis\nAlthough our project has provided rich insights, the data we analyzed was limited to specific timeframes (2023–2024 for Reddit, 1985–2017 for Dear Abby). Expanding the dataset to include broader time ranges would enable a longitudinal analysis of advice-seeking behaviors and their evolution over time."
+  },
+  {
+    "objectID": "conclusion.html#advanced-predictive-models",
+    "href": "conclusion.html#advanced-predictive-models",
+    "title": "Conclusion",
+    "section": "Advanced Predictive Models",
+    "text": "Advanced Predictive Models\nWhile our Random Forest and XGBoost models achieved reasonable performance, exploring deep learning approaches, such as transformers or attention-based architectures, could improve predictive accuracy by capturing more complex relationships between features."
+  },
+  {
+    "objectID": "conclusion.html#expanding-subreddit-analysis",
+    "href": "conclusion.html#expanding-subreddit-analysis",
+    "title": "Conclusion",
+    "section": "Expanding Subreddit Analysis",
+    "text": "Expanding Subreddit Analysis\nCurrently, our analysis focused on three subreddits. Incorporating additional subreddits, such as r/relationship_advice or r/legaladvice, could provide a more comprehensive view of Reddit’s advice-seeking ecosystem and uncover unique patterns in niche communities."
+  },
+  {
+    "objectID": "conclusion.html#exploring-cultural-and-demographic-trends",
+    "href": "conclusion.html#exploring-cultural-and-demographic-trends",
+    "title": "Conclusion",
+    "section": "Exploring Cultural and Demographic Trends",
+    "text": "Exploring Cultural and Demographic Trends\nFuture work could analyze cultural or demographic variations in advice-seeking behaviors by incorporating metadata such as geographic location (if available) or inferred user demographics."
+  },
+  {
+    "objectID": "eda_reddit_external.html",
+    "href": "eda_reddit_external.html",
+    "title": "EDA",
+    "section": "",
+    "text": "Our analysis explores how users engage with advice-seeking platforms, focusing on Reddit subreddits AskReddit, AmItheAsshole, and AmIOverreacting, and comparing them to the iconic Dear Abby advice column. The results highlight significant differences in platform dynamics, engagement levels, and audience behaviors. While AskReddit dominates in terms of post volume and engagement due to its broad appeal, AmItheAsshole provides structured feedback on ethical dilemmas, making it a hub for direct and decisive user opinions. AmIOverreacting, though smaller and newer, shows strong engagement relative to its size and employs a structured feedback system similar to AmItheAsshole, enabling users to receive validation or critique on their emotional responses.\nThe data also reveals that posts on Reddit are far more frequent than those in Dear Abby, with individual subreddits surpassing the monthly activity of the column at its peak. Interestingly, while shorter posts dominate AskReddit, the subreddit still achieves the highest virality rate, showing that concise content can resonate deeply with audiences. Conversely, AmItheAsshole posts are often longer and more detailed, reflecting the complexity of the moral dilemmas discussed. The anonymous nature of Reddit fosters candid conversations, including a notable percentage of explicit (NSFW) content, particularly on AskReddit and AmIOverreacting.\nThese findings provide a comprehensive understanding of how users engage with these platforms, revealing distinct behavioral patterns and thematic trends. This analysis lays the groundwork for deeper investigations, including topic modeling, sentiment analysis, and predicting community judgments, to further uncover the motivations and themes that drive engagement in online advice-seeking communities."
+  },
+  {
+    "objectID": "eda_reddit_external.html#reddit-data-retrieval",
+    "href": "eda_reddit_external.html#reddit-data-retrieval",
+    "title": "EDA",
+    "section": "Reddit Data Retrieval",
+    "text": "Reddit Data Retrieval\nWe began by retrieving data from our professor’s Amazon S3 bucket, which had been collected via the Reddit API. The dataset was analyzed using AWS SageMaker and PySpark in JupyterLab. The data included posts and comments from three subreddits: AmItheAsshole (AITA), AskReddit, and AmIOverreacting (AIOR)."
+  },
+  {
+    "objectID": "eda_reddit_external.html#posts-data-cleaning",
+    "href": "eda_reddit_external.html#posts-data-cleaning",
+    "title": "EDA",
+    "section": "Posts Data Cleaning",
+    "text": "Posts Data Cleaning\n\nInitial Dataset\nThe initial dataset for posts contained over 3 million entries, including some of Reddit’s largest subreddits: AITA and AskReddit. Given the size and scope of the data, we established cleaning protocols to ensure meaningful and robust analysis.\n\n\nCleaning Steps\n\nRemoving Empty Text: Posts with removed or missing content (selftext = ‘[removed]’) were excluded to focus only on posts with substantial text data.\nFiltering by Engagement: Since our subreddits focus on seeking feedback, we applied comment thresholds to retain posts with significant engagement.\n\n\nAITA: Posts with fewer than 25 comments were removed.\nAIOR: Posts with fewer than 15 comments were removed.\nAskReddit: Posts with fewer than 50 comments were removed.\n\nThese thresholds were chosen based on the summary statistics (mean, median, and quantiles) of comment counts per post, ensuring a representative sample of well-engaged posts.\n\n\nFinal Dataset\nAfter cleaning, the dataset was reduced to approximately 80,000 posts across the three subreddits, retaining high-quality and meaningful entries for analysis."
+  },
+  {
+    "objectID": "eda_reddit_external.html#comments-data-cleaning",
+    "href": "eda_reddit_external.html#comments-data-cleaning",
+    "title": "EDA",
+    "section": "Comments Data Cleaning",
+    "text": "Comments Data Cleaning\n\nInitial Dataset\nThe comments dataset initially contained over 76 million entries, representing a vast array of user interactions on the three subreddits.\n\n\nCleaning Steps\n\nRemoving Empty Text: Comments with removed or missing content (body = ‘[removed]’) were excluded to focus on meaningful user responses.\nJoining with Posts: To ensure all comments were tied to a relevant post, we joined the comments dataframe with the cleaned posts dataframe, removing orphaned comments.\nFiltering for Immediate Feedback: Reddit is a platform known for its fast-paced interactions, especially in these subreddits. To capture this dynamic, we:\n\n\nCreated a top_level_comment variable (binary) to isolate comments directly responding to the original post.\nAttempted to analyze deeper comment threads recursively (using methods like graphs/nodes in Pandas and PySpark), but computational limitations made this infeasible due to the dataset’s size.\n\n\nTime-Based Filtering: A time_since_post variable was calculated, measuring the time in hours between a post’s creation and its comments. Only comments made within 24 hours of a post were retained, reflecting the immediacy of feedback typical in these subreddits.\n\n\n\nFinal Dataset\nThe final comments dataset was reduced to approximately 19 million comments, representing meaningful, top-level feedback tied to posts with significant engagement. Each cleaning decision was made after carefully examining the data and guided by the unique dynamics of Reddit’s feedback mechanisms."
+  },
+  {
+    "objectID": "eda_reddit_external.html#external-data-dear-abby",
+    "href": "eda_reddit_external.html#external-data-dear-abby",
+    "title": "EDA",
+    "section": "External Data: Dear Abby",
+    "text": "External Data: Dear Abby\nTo complement our Reddit analysis, we incorporated the Dear Abby dataset, sourced from Kaggle and featured in The Pudding’s essay, 30 Years of American Anxieties. This dataset includes 20,000 questions submitted to the advice column from 1985 to 2017, offering a historical perspective on public concerns.\nData Preparation 1. Removed incomplete entries and standardized text formatting. 2. Retained submissions within the 1985–2017 time frame.\nThis dataset serves as a baseline for comparing traditional advice-seeking behavior with Reddit’s dynamic, real-time interactions, helping to explore how platform design and anonymity shape public concerns."
+  },
+  {
+    "objectID": "eda_reddit_external.html#reddit-activity-across-subreddits",
+    "href": "eda_reddit_external.html#reddit-activity-across-subreddits",
+    "title": "EDA",
+    "section": "Reddit Activity Across Subreddits",
+    "text": "Reddit Activity Across Subreddits\nReddit’s immense popularity as a modern advice-seeking platform is evident in the posting trends across its subreddits. The bar chart below illustrates monthly post frequencies for AskReddit, AmItheAsshole, and AmIOverreacting from June 2023 to July 2024.\n\n\n\nfigure: Number of post per subreddits each month of the year\n\n\n\n\n\n\n\n\n\n\n\nsubreddit_post\nmin_date\nmax_date\n\n\n\n\n0\nAmIOverreacting\n11/10/23 11:42\n7/31/24 23:52\n\n\n1\nAmItheAsshole\n6/1/23 0:03\n7/31/24 23:50\n\n\n2\nAskReddit\n6/1/23 0:10\n7/31/24 23:55\n\n\n\n\n\n\n\n\nKey Observations:\n\nDominance of AskReddit: AskReddit consistently receives the highest number of posts, reflecting its broad appeal and diverse range of topics.\nSteady Activity in AmItheAsshole: AmItheAsshole exhibits robust activity, indicating strong engagement with moral and ethical dilemmas.\nEmergence of AmIOverreacting: AmIOverreacting shows relatively lower activity, as it is a newer subreddit established in late 2023. Its posting frequency has gradually increased, reflecting its growing user base.\n\n\n\nTakeaway:\nMonthly activity on Reddit far exceeds that of Dear Abby, with individual subreddits, like AskReddit and AmItheAsshole, more than doubling the average number of monthly posts Dear Abby received."
+  },
+  {
+    "objectID": "eda_reddit_external.html#dear-abby-trends-over-time",
+    "href": "eda_reddit_external.html#dear-abby-trends-over-time",
+    "title": "EDA",
+    "section": "Dear Abby: Trends Over Time",
+    "text": "Dear Abby: Trends Over Time\nThe Dear Abby dataset provides a historical perspective, with 20,000 questions submitted from 1985 to 2017. The visualizations below highlight trends in posting volume and content characteristics over time.\n\n\n\n\n\n\nfigure: Number of Posts per Year on Dear Abby\n\n\n\n\n\n\n\nfigure: Aggregated Number of Posts per Month from year 1985 to 2017 on Dear Abby\n\n\n\n\n\n\n\n\n\n\n\nfigure: Average Number of Words per Post Each Year from year 1985 to 2017 on Dear Abby\n\n\n\n\n\n\n\nfigure: Average Number of Words per Post Each Month from year 1985 to 2017 on Dear Abby\n\n\n\n\n\nThe Top-Left Plot: Number of Posts per Year This bar chart shows the annual number of posts. A significant peak is observed in 1985, followed by a decline and stabilization from the late 1980s to early 2000s. The number of posts begins to rise again in the 2000s, peaking in the late 2010s before dropping towards 2017. This trend may indicate shifts in popularity or submission practices over time.\nThe Top-Right Plot: Aggregated Number of Posts per Month This bar chart highlights the monthly distribution of posts over the entire dataset. The counts are relatively even across the months, with a slight increase around June and July, possibly reflecting seasonal patterns or user behaviors during the summer.\nThe Bottom-Left Plot: Average Number of Words per Post Each Year This line plot tracks the yearly average word count per post. From 1985 to 2000, the average word count fluctuates significantly but shows a decreasing trend overall. After 2000, there is a sharper decline, reaching lower averages in the 2010s. This trend might indicate a shift towards shorter, more concise posts over time.\nThe Bottom-Right Plot: Average Number of Words per Post Each Month This line plot shows monthly variations in the average word count. The averages remain fairly consistent throughout most of the months but exhibit a noticeable peak in the later months, especially in December. This suggests that posts made at the end of the year tend to be longer, possibly influenced by holiday-related themes or reflective content.\n\nTakeaway:\nOverall, the data reveals notable trends in the quantity and length of posts. While annual posting activity fluctuates, there is a gradual increase in submissions post-2000. Monthly trends indicate slight seasonal variations in posting volume and length. Over the years, posts appear to have become shorter, reflecting potential shifts in communication style or platform usage."
+  },
+  {
+    "objectID": "eda_reddit_external.html#summary-reddit-v.-dear-abby",
+    "href": "eda_reddit_external.html#summary-reddit-v.-dear-abby",
+    "title": "EDA",
+    "section": "Summary: Reddit v. Dear Abby",
+    "text": "Summary: Reddit v. Dear Abby\nBoth platforms highlight user-generated advice-seeking content, but the scale and dynamics differ drastically:\n\nReddit’s Reach: Individual subreddits like AskReddit and AmItheAsshole receive far more posts per month than Dear Abby at its peak, reflecting Reddit’s status as a dominant modern platform.\nDear Abby’s Longevity: Despite its smaller scale, Dear Abby provides a longitudinal view of public concerns over three decades, showcasing shifts in communication style and platform usage.\nPlatform Evolution: AmIOverreacting demonstrates the growth of niche communities on Reddit, highlighting its adaptability to emerging user needs, while Dear Abby reflects a more stable, traditional approach.\n\nThis comparison underscores Reddit’s expansive role in advice-seeking today, surpassing traditional platforms in scale and immediacy."
+  },
+  {
+    "objectID": "eda_reddit_external.html#key-insights-1",
+    "href": "eda_reddit_external.html#key-insights-1",
+    "title": "EDA",
+    "section": "Key Insights:",
+    "text": "Key Insights:\n\nAmIOverreacting:\n\n\nThe distribution is skewed right, with most posts under 3,000 characters.\nThis reflects its focus on concise, emotional queries, often aimed at validating users’ feelings.\nLower post counts compared to the other subreddits can be attributed to its status as a newer community.\n\n\nAmItheAsshole:\n\n\nPosts exhibit a wider range of lengths, with a noticeable peak around 2,000 characters.\nUsers often provide detailed narratives to contextualize their moral dilemmas, which aligns with the subreddit’s focus on ethical judgment.\n\n\nAskReddit:\n\n\nA bimodal distribution emerges, with one peak at very short posts (under 100 characters) and another less noticable peak at longer, detailed posts.\nThis reflects the diverse nature of AskReddit, accommodating both concise questions and extensive discussions."
+  },
+  {
+    "objectID": "eda_reddit_external.html#popularity-and-content-characteristics",
+    "href": "eda_reddit_external.html#popularity-and-content-characteristics",
+    "title": "EDA",
+    "section": "Popularity and Content Characteristics:",
+    "text": "Popularity and Content Characteristics:\n\nDespite AskReddit’s shorter posts, it maintains the highest percentage of viral posts among the subreddits, indicating that post popularity is not tied to length.\nA closer examination of content reveals differing engagement dynamics. For example:\n\nAmItheAsshole posts often revolve around introspective queries about personal responsibility, leading to more reserved and non-explicit content.\nAmIOverreacting may include more emotionally charged or explicit posts, as users seek validation for situations they believe justify their reactions."
+  },
+  {
+    "objectID": "eda_reddit_external.html#response-patterns",
+    "href": "eda_reddit_external.html#response-patterns",
+    "title": "EDA",
+    "section": "Response Patterns",
+    "text": "Response Patterns\nThe radar chart below visualizes the distribution of these labels in responses to posts on AmItheAsshole.\n\n\n\nfigure: Radar chart of the reponse of posts in AmItheAsshole"
+  },
+  {
+    "objectID": "eda_reddit_external.html#key-insights-2",
+    "href": "eda_reddit_external.html#key-insights-2",
+    "title": "EDA",
+    "section": "Key Insights:",
+    "text": "Key Insights:\n\nThe most frequent responses are YTA and NTA, indicating that audiences on this subreddit are highly decisive and assertive in their opinions.\nThis structured feedback system likely contributes to the subreddit’s popularity, as users seeking clarity or validation for their actions receive direct, categorical judgments.\nThe diversity of response labels, ranging from agreement to neutrality or disagreement, allows for nuanced discussions and reflects the community’s engagement with complex moral dilemmas."
+  },
+  {
+    "objectID": "eda_reddit_external.html#takeaway-2",
+    "href": "eda_reddit_external.html#takeaway-2",
+    "title": "EDA",
+    "section": "Takeaway:",
+    "text": "Takeaway:\nThe structured nature of feedback on AmItheAsshole fosters a unique environment for moral and ethical discussions, making it a go-to platform for users seeking unfiltered and assertive opinions on controversial topics.\nA similar labeling system is present in AmIOverreacting, which will be explored further in our machine learning section."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "What should a mother do if she discovers her son is dating her best friend? How should a husband navigate the collapse of a decades-long marriage without the support of friends or family? What advice can a wife seek after finding her husband in an unexpected betrayal? Whether dealing with extraordinary dilemmas or everyday difficulties, people often search for objective opinions beyond what close friends and family might offer.\nFor over half a century, advice columns like Dear Abby have served as cultural cornerstones, providing public forums for private concerns. From its inception in 1956, Dear Abby offered concise, empathetic counsel on personal and social issues, reflecting the values and anxieties of the time. With its national reach, the column became a unique lens into the moral and cultural fabric of America.\nIn the digital age, platforms like Reddit have transformed advice-seeking into a global, participatory experience. Subreddits such as r/AmItheAsshole, r/AskReddit, and r/AmIOverreacting offer spaces where users can share their dilemmas and receive feedback from a diverse and anonymous audience. These digital communities allow individuals to interact in real-time, reshaping how advice is sought and delivered."
+  },
+  {
+    "objectID": "index.html#the-evolution-of-advice-seeking",
+    "href": "index.html#the-evolution-of-advice-seeking",
+    "title": "Introduction",
+    "section": "",
+    "text": "What should a mother do if she discovers her son is dating her best friend? How should a husband navigate the collapse of a decades-long marriage without the support of friends or family? What advice can a wife seek after finding her husband in an unexpected betrayal? Whether dealing with extraordinary dilemmas or everyday difficulties, people often search for objective opinions beyond what close friends and family might offer.\nFor over half a century, advice columns like Dear Abby have served as cultural cornerstones, providing public forums for private concerns. From its inception in 1956, Dear Abby offered concise, empathetic counsel on personal and social issues, reflecting the values and anxieties of the time. With its national reach, the column became a unique lens into the moral and cultural fabric of America.\nIn the digital age, platforms like Reddit have transformed advice-seeking into a global, participatory experience. Subreddits such as r/AmItheAsshole, r/AskReddit, and r/AmIOverreacting offer spaces where users can share their dilemmas and receive feedback from a diverse and anonymous audience. These digital communities allow individuals to interact in real-time, reshaping how advice is sought and delivered."
+  },
+  {
+    "objectID": "index.html#why-these-platforms",
+    "href": "index.html#why-these-platforms",
+    "title": "Introduction",
+    "section": "Why These Platforms?",
+    "text": "Why These Platforms?\nReddit is a vast and diverse community where users can anonymously ask questions and receive opinions almost instantaneously. Subreddits like r/AmItheAsshole (AITA) exemplify this dynamic, providing structured spaces for moral judgment. AITA is particularly suited for analysis, as its inherently labeled data (e.g., “You’re the Asshole” or “Not the Asshole”) enables predictive modeling of community judgments.\n\n\n\nr/AmITheAsshole is a space where users share morally complex situations and ask the community for judgment.\n\n\nTo expand beyond AITA, we included r/AmIOverreacting (AIOR), another subreddit with a similar structure where users seek validation on whether their emotional responses are justified. Like AITA, AIOR posts often receive labeled judgments, such as “Overreacting” or “Not Overreacting,” making it equally rich for analysis.\n\n\n\nr/AmIOverreacting provides a platform for people to validate their emotional responses to situations.\n\n\nAs a baseline for comparison, we also included r/AskReddit, a general forum for open-ended questions. Unlike AITA and AIOR, r/AskReddit encourages broad discussions and diverse opinions, often focused on life challenges or social dilemmas.\n\n\n\nr/AskReddit serves as a general forum for open-ended questions about life and social issues.\n\n\nAdditionally, we incorporated Dear Abby columns as external data to compare traditional advice-seeking to its modern, anonymous counterpart on Reddit. This comparison enables us to explore whether anonymity influences the topics and tone of advice-seeking questions. Although the timeframes for these datasets differ (Dear Abby spans 1985–2017, while Reddit data covers 2023–2024), our focus is not on temporal trends but on thematic and platform-driven differences. Future work may explore the influence of time more comprehensively."
+  },
+  {
+    "objectID": "index.html#the-project",
+    "href": "index.html#the-project",
+    "title": "Introduction",
+    "section": "The Project",
+    "text": "The Project\nThis project investigates advice-seeking behaviors across modern and traditional platforms to explore how themes, sentiment, and user judgments differ. Using a combination of Exploratory Data Analysis (EDA), Natural Language Processing (NLP), and Machine Learning (ML), we analyze the similarities and differences between Reddit subreddits like r/AmItheAsshole, r/AmIOverreacting, and r/AskReddit, and the iconic Dear Abby advice column.\nBy comparing these platforms, we aim to uncover insights into how anonymity, platform design, and audience engagement shape the way people seek and respond to advice. The following goals provide a detailed roadmap for our analysis."
+  },
+  {
+    "objectID": "index.html#project-goals-appendix",
+    "href": "index.html#project-goals-appendix",
+    "title": "Introduction",
+    "section": "Project Goals (Appendix)",
+    "text": "Project Goals (Appendix)\n\nExploratory Data Analysis: Understanding User Behavior\n\nBusiness goal: Gain insights into user behavior and engagement patterns across r/AmItheAsshole, r/AskReddit, and r/AmIOverreacting.\nTechnical proposal: Conduct EDA by analyzing metrics such as post frequency, comment counts, upvotes, and user activity levels. Visualize engagement trends over time to understand the growth and evolution of these subreddits. Identify peak engagement periods and explore correlations with major cultural or social events.\n\nTopic Modeling Across Subreddits\n\nBusiness goal: Identify and compare common topics discussed on r/AmItheAsshole, r/AskReddit, and r/AmIOverreacting, as well as Dear Abby columns.\nTechnical proposal: Use NLP techniques such as Latent Dirichlet Allocation (LDA) to perform topic modeling on each subreddit and Dear Abby articles. Compare key topics across platforms to analyze shifts in advice-seeking behavior over time. Perform sentiment analysis on identified topics to uncover emotional trends within specific topics.\n\nPredicting User Judgment (YTA/NTA)\n\nBusiness goal: Predict whether a user on r/AmItheAsshole will be judged as “You’re the Asshole (YTA)” or “Not the Asshole (NTA)” based on post content.\nTechnical proposal: Preprocess text data to clean and tokenize posts. Build and train a classification model using techniques like logistic regression, SVM, or neural networks. Use features such as word embeddings (e.g., Word2Vec or BERT) and text-based metrics. Evaluate model performance using accuracy, precision, recall, and F1 score, and use explainability tools like SHAP to understand key predictors.\n\nSentiment Analysis of Post Titles and Comments\n\nBusiness goal: Understand the overall sentiment of posts and comments on r/AmItheAsshole and compare it with r/AskReddit and Dear Abby.\nTechnical proposal: Use sentiment analysis tools to determine the polarity (positive, neutral, negative) of post titles and comments. Perform comparative analysis across subreddits and between Reddit data and Dear Abby responses. Explore patterns in sentiment distribution for posts with different judgments (e.g., YTA, NTA).\n\nLanguage Differences Between Judgments (YTA/NTA)\n\nBusiness goal: Identify linguistic patterns that differentiate posts judged as YTA or NTA.\nTechnical proposal: Use NLP techniques such as TF-IDF, n-gram analysis, and word embeddings to find distinguishing words and phrases used in YTA vs. NTA posts. Compare language complexity, sentiment, and unique terms across posts. Use clustering techniques to group posts with similar linguistic characteristics.\n\nAnalyzing Comment Response Patterns to Posts\n\nBusiness goal: Understand how the Reddit community’s responses differ based on the type of posts (e.g., YTA vs. NTA) on r/AmItheAsshole.\nTechnical proposal: Analyze the comment structure, volume, and sentiment of responses to posts labeled YTA versus NTA. Measure metrics such as comment depth, engagement duration, and frequency of emotionally charged language. Use clustering to group posts with similar engagement patterns and explore how initial judgments influence subsequent community reactions.\n\nIdentifying Common Themes Across Judgments\n\nBusiness goal: Explore recurring themes in posts judged as YTA and NTA on r/AmItheAsshole.\nTechnical proposal: Use NLP topic modeling methods like Latent Dirichlet Allocation (LDA) or Non-negative Matrix Factorization (NMF) to identify and compare common themes across YTA and NTA posts. Examine the distribution and frequency of topics for each judgment category and analyze associated keywords. Use clustering techniques to group similar posts based on identified themes and explore potential correlations with post metadata (e.g., engagement levels).\n\nUser Sentiment Over Time\n\nBusiness goal: Analyze how user sentiment on advice-seeking subreddits has changed over time.\nTechnical proposal: Aggregate sentiment scores for posts and comments by month/year. Visualize trends in positive, negative, and neutral sentiment over time. Perform hypothesis testing to identify significant changes in sentiment distribution during notable periods (e.g., pandemics, economic crises).\n\nExploring Gender Differences in Post Content\n\nBusiness goal: Identify potential gender-based differences in advice-seeking behavior and language use.\nTechnical proposal: Use text classification models to predict likely gender based on text content (if data allows gender inference). Compare word usage, sentiment, and engagement metrics between male- and female-coded posts. Investigate differences in judgment outcomes (YTA/NTA) based on inferred gender.\n\nComparing Advice Quality Over Time\n\nBusiness goal: Examine whether the quality and content of advice provided on Reddit has evolved over time compared to historical Dear Abby columns.\nTechnical proposal: Use NLP to assess the complexity and sentiment of advice over time by evaluating word usage, length, sentiment score, and syntactic complexity. Train models to categorize advice as supportive, critical, neutral, or informational. Compare these metrics across different periods and between Reddit and Dear Abby responses to assess changes in advice tone, specificity, and style."
+  },
+  {
+    "objectID": "NLP.html",
+    "href": "NLP.html",
+    "title": "NLP",
+    "section": "",
+    "text": "In this section, we employ advanced Natural Language Processing (NLP) techniques to delve deeper into textual data from various sources, extracting meaningful insights and conducting a nuanced analysis. Our primary objective is to identify and analyze the key topics discussed across different subreddits and external datasets, examining how these topics correlate with various factors such as the sentiment of the post text, labels extracted from the content (e.g., ‘YTA,’ ‘NTA’), and how these topics have evolved over time. By doing so, we aim to uncover patterns and draw conclusions about user behavior, preferences, and trends across different platforms.\nThrough our topic analysis, we uncovered striking differences in the purpose and usage of the subreddit AskReddit compared to other platforms like Dear Abby or subreddits such as Am I Overreacting and Am I the Asshole. Unlike the other sources, which primarily serve as platforms for users to seek life advice or moral judgments, AskReddit emerged as a space where users frequently sought suggestions on topics like movies or posed questions that were too vague to categorize effectively using keywords. This underscores a fundamental difference in how the platform is utilized, highlighting its more generalized and open-ended nature compared to the focused problem-solving observed in other subreddits.\nOn the other hand, when we examined the external dataset Dear Abby, we found it closely aligned with the topics and concerns discussed in subreddits such as Am I Overreacting and Am I the Asshole. These sources shared a remarkable consistency in the themes explored, reflecting recurring patterns in human concerns and dilemmas. Furthermore, our analysis revealed that the nature of these discussions has remained steady over time, indicating that societal concerns expressed through these platforms have not significantly evolved, regardless of the medium or the passage of time.\nIn exploring correlations, several intriguing patterns emerged. For instance, posts discussing pets often leaned towards more negative sentiment, suggesting that users may express heightened anxiety or concern when addressing issues related to their animals. Conversely, topics surrounding wedding or marriage-related issues revealed a surprising trend: users were generally less likely to judge individuals harshly or label them as “a**holes” in these contexts. This points to a more empathetic or understanding approach when the subject matter involves emotionally significant life events.\nOverall, our analysis offers a detailed perspective on the dynamics of online discourse across platforms, providing valuable insights into user behavior and the societal norms that influence how individuals express themselves and seek advice in digital spaces."
+  },
+  {
+    "objectID": "NLP.html#topic-modeling",
+    "href": "NLP.html#topic-modeling",
+    "title": "NLP",
+    "section": "Topic Modeling",
+    "text": "Topic Modeling\n\nWhich Model to use?\nOur team explored a variety of methodologies, including TF-IDF, Latent Semantic Analysis (LSA), and Non-Negative Matrix Factorization (NMF), to effectively identify topics within each data source. To determine the most suitable approach, we conducted a focused experiment using the Am I the Asshole (AITA) subreddit as a case study. This platform’s diverse content provided an ideal testing ground for evaluating the feasibility and effectiveness of each method. Once the most reliable and insightful technique was identified through this testing process, we successfully scaled and applied it across other datasets, ensuring consistency and relevance in our topic analysis across multiple sources.\n\nTF-IDF\nWhen analyzing the TF-IDF scores, we started by examining the words with the highest scores in each text. Interestingly, we found that even the top-ranked words generally had low scores, with the distribution heavily skewed to the right. This sparked our curiosity—what kinds of words had the highest TF-IDF scores? Upon closer inspection, we discovered that these were often names rather than topic-specific terms. This suggests an intriguing interpretation: the distinguishing factor among the documents wasn’t primarily the subject matter, but rather the individuals involved. It’s a conclusion that aligns well with the nature of the data. An interesting analysis but not suitable for our analysis. We’ll move on to our next methods : LSA and NMF.\n\n\n\n\n\n\nfigure: Distribution for highest tf-idf scores per pose\n\n\n\n\n\n\n\nfigure: Words with the highest tf-idf scores\n\n\n\n\n\nFigure 1 tf-idf distribution/analysis\n\n\nLSA and NMF\nWhat is LSA and NMF? Latent Semantic Analysis (LSA) and Non-Negative Matrix Factorization (NMF) are matrix factorization techniques used for topic analysis. LSA uses Singular Value Decomposition (SVD) to identify latent semantic structures by reducing the dimensionality of the term-document matrix, capturing relationships between terms and documents. NMF, on the other hand, enforces non-negativity constraints, resulting in more interpretable topics by decomposing the matrix into non-negative term-topic and document-topic components. While LSA is effective for overlapping topics, NMF excels in sparsity and interpretability.\nWhich Model to Choose? Ultimately, we selected NMF due to its superior ability to capture the distribution of topics. Not only did the NMF model outperform LSA in extracting meaningful topics, as will be demonstrated later, but the distribution of topics illustrated in Figure 2 clearly underscored why it was the optimal choice.\n\n\n\nTopic\nLSA\nLSA (Ratio)\nNMF\nNMF (Ratio)\n\n\n\n\n1\n31227\n96%\n14080\n43%\n\n\n2\n175\n1%\n9448\n29%\n\n\n3\n83\n0%\n4966\n15%\n\n\n4\n583\n2%\n1423\n4%\n\n\n5\n331\n1%\n2482\n8%\n\n\n\nFigure 2: Distribution of topics for each model\n\n\n\nTopic Analysis\nThe figures below illustrate the key words associated with each topic across all our data sources. Can you identify the similarities and differences? Most of the words are grouped within similar topics, allowing us to categorize themes like friendships, dating, and marriage. However, topics from the “AskReddit” subreddit are challenging to conceptualize based on the words alone. This could be due to the lack of a consistent theme across the posts.\nIn contrast, the other two subreddits (“Am I the Ahole” and ”Am I Overreacting”) and the ”Dear Abby” column show notable similarities, with most topics centered around work, friendships, and relationships. An intriguing finding within the ”Am I the Ahole” subreddit was a unique topic involving pets, where users debated who was at fault—the pet or the owner.\nFigure 4 provides a breakdown of these topics into single words, highlighting the consistency across all sources except “AskReddit.”\n\nAmItheAssholeAmIOverreactingAskRedditDearAbby\n\n\n\n\n\nNMF topic modeling for AmItheAsshole\n\n\n\n\n\n\n\nNMF topic modeling for AmIOverreacting\n\n\n\n\n\n\n\nNMF topic modeling for AskReddit\n\n\n\n\n\n\n\nNMF topic modeling for DearAbby\n\n\n\n\n\nFigure3 : Topic Analysis for each subreddit + Dear Abby\n\n\n\n\n\n\n\n\n\n\nTopics/ Subreddits\nAm I the Asshole\nAm I Overreacting\nAsk Reddit\nDear Abby\n\n\n\n\n1\nFriends\nPersonal experience\n\nFriends\n\n\n2\nFamily\nwork\n\nWedding\n\n\n3\nMoney\nfriend\nmovies\n\n\n\n4\nPet\nrelationship\n\nfamily\n\n\n5\nWedding\nmom\n\nMarriage\n\n\n\nFigure4: Topics in words\n\nDid the topics chagne over time?\nOver time, the primary topics discussed in Dear Abby and *Am I the A**hole (AITA)*—such as friendships, family, marriage, and weddings—have remained consistent. However, a notable new topic has emerged in AITA: discussions centered around pets. This shift could be interpreted in two ways.\nFirst, it may reflect the growing prevalence of pets in households and their increasingly significant role in human lives, making pet-related dilemmas a common topic of discussion. Alternatively, this change could be attributed to the platform’s nature. Unlike Dear Abby, which was published in newspapers and likely encouraged more polished and formal submissions, AITA operates in the casual, online environment of Reddit. This less formal setting might make users more inclined to post about everyday issues, such as those involving pets, without the expectation of adhering to traditional standards of decorum.\n\nTopic Trend(AITA)Topic Trend(DearAbby)\n\n\n\n\n\nfigure : AITA topics change over time\n\n\n\n\n\n\n\nfigure : DearAbby topics change over time\n\n\n\n\n\n\n\n\nAdditional Insights\n\nAITA label/topic correlation\nIs there a correlation between topics and the labels assigned to writers in the comments? To explore this, we examined whether people tend to be biased toward assigning specific labels to certain topics.\nAs shown in Figure 5, posts related to weddings and marriage often receive more lenient judgments, with writers frequently labeled as “not the ahole” (NTA). In contrast, topics involving family, friends, and money have the highest ratios of ”you’re the ahole” (YTA) labels. Among these, posts about friendships stand out with the lowest proportion of NTA labels.\nFor friend-related posts, commenters tend to categorize writers as the ahole more often and “not the ahole” less frequently. However, for marriage-related posts, writers are more commonly judged as NTA. This suggests that when it comes to marriage, people may share a more uniform perspective on what is right and wrong. In contrast, judgments about friendships seem to be more subjective, likely because friendships often involve nuanced contexts and varied dynamics. Marriage and weddings, on the other hand, tend to follow more universal norms, allowing for greater consensus in opinions.\nFigure 5 illustrates how sentiment varies across topics and labels. One notable observation is that posts in the “pet” category have the most negative sentiment scores on average. Commenters tend to use harsher or more critical language when discussing pets, while conversations about humans are generally framed more positively.\nAdditionally, we observe that posts labeled as “NTA” (not the ahole) often have lower sentiment scores compared to those labeled as “YTA” (you’re the ahole). This suggests that the tone of the writing might influence the assignment of an NTA label. Interestingly, the label with the highest overall sentiment score is “NAH” (no a**holes here), which implies that the way a post is worded can significantly impact how readers judge the situation, regardless of its actual content.\n\nTopic/Label RatioTopic/Label Sentiment Analysis\n\n\n\n\n\nfigure : Ratio of label in each topic\n\n\n\n\n\n\n\nfigure : How does sentiment vary for topic/label combination?\n\n\n\n\n\n\n\nAnalyzing time of posting\nIncorporating the time of day into the analysis reveals interesting trends in posting behavior and sentiment across topics. Figure 8 illustrates how sentiment scores vary throughout the day. Notably, posts in the Marriage/Wedding category have the highest average sentiment, whereas the Family category consistently exhibits negative sentiment, lacking any timeframe where sentiment turns positive. In contrast, all other topics show at least one instance of positive sentiment during the morning.\nAdditionally, posting patterns differ significantly by topic. Posts about Family, Friends, and Money are predominantly concentrated after 5 PM, likely reflecting the schedules of students or professionals who write after their daily responsibilities. On the other hand, topics such as Marriage and Pets tend to attract more daytime posts, perhaps indicating that these writers have more flexibility in their schedules. These patterns offer a glimpse into the lifestyle and emotional dynamics of the individuals behind the posts.\n\nSentiment by timePost frequency by time\n\n\n\n\n\nfigure : Sentiment variation thorughout time of day\n\n\n\n\n\n\n\nfigure : Post frequency throughout time of day"
+  },
+  {
+    "objectID": "secondary/code_data.html",
+    "href": "secondary/code_data.html",
+    "title": "Code and Data",
+    "section": "",
+    "text": "Back to top"
+  }
+]

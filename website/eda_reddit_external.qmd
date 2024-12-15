@@ -1,0 +1,317 @@
+---
+title: "EDA"
+format:
+  html:
+    code-fold: false
+    code-tools: true
+    html-sanitize: false
+    self-contained: true
+execute:
+  echo: false
+---
+
+# Executive Summary
+
+Our analysis explores how users engage with advice-seeking platforms, focusing on Reddit subreddits **AskReddit**, **AmItheAsshole**, and **AmIOverreacting**, and comparing them to the iconic **Dear Abby** advice column. The results highlight significant differences in platform dynamics, engagement levels, and audience behaviors. While **AskReddit** dominates in terms of post volume and engagement due to its broad appeal, **AmItheAsshole** provides structured feedback on ethical dilemmas, making it a hub for direct and decisive user opinions. **AmIOverreacting**, though smaller and newer, shows strong engagement relative to its size and employs a structured feedback system similar to **AmItheAsshole**, enabling users to receive validation or critique on their emotional responses.
+
+The data also reveals that posts on Reddit are far more frequent than those in **Dear Abb**y, with individual subreddits surpassing the monthly activity of the column at its peak. Interestingly, while shorter posts dominate **AskReddit**, the subreddit still achieves the highest virality rate, showing that concise content can resonate deeply with audiences. Conversely, **AmItheAsshole** posts are often longer and more detailed, reflecting the complexity of the moral dilemmas discussed. The anonymous nature of Reddit fosters candid conversations, including a notable percentage of explicit (NSFW) content, particularly on **AskReddit** and **AmIOverreacting**.
+
+These findings provide a comprehensive understanding of how users engage with these platforms, revealing distinct behavioral patterns and thematic trends. This analysis lays the groundwork for deeper investigations, including topic modeling, sentiment analysis, and predicting community judgments, to further uncover the motivations and themes that drive engagement in online advice-seeking communities.
+
+# Data Ingestion and Cleaning
+
+## Reddit Data Retrieval
+
+We began by retrieving data from our professor's **Amazon S3 bucket**, which had been collected via the Reddit API. The dataset was analyzed using **AWS SageMaker** and **PySpark** in JupyterLab. The data included posts and comments from three subreddits: [AmItheAsshole](https://www.reddit.com/r/AmItheAsshole/) (AITA), [AskReddit](https://www.reddit.com/r/AskReddit/), and [AmIOverreacting](https://www.reddit.com/r/AmIOverreacting/) (AIOR).
+
+## Posts Data Cleaning
+
+### Initial Dataset
+
+The initial dataset for posts contained over **3 million entries**, including some of Reddit's largest subreddits: AITA and AskReddit. Given the size and scope of the data, we established cleaning protocols to ensure meaningful and robust analysis.
+
+### Cleaning Steps
+
+1. **Removing Empty Text:** Posts with removed or missing content (selftext = '[removed]') were excluded to focus only on posts with substantial text data.
+2. **Filtering by Engagement:** Since our subreddits focus on seeking feedback, we applied comment thresholds to retain posts with significant engagement.
+
+* AITA: Posts with fewer than **25 comments** were removed.
+* AIOR: Posts with fewer than **15 comments** were removed.
+* AskReddit: Posts with fewer than **50 comments** were removed.
+
+These thresholds were chosen based on the summary statistics (mean, median, and quantiles) of comment counts per post, ensuring a representative sample of well-engaged posts.
+
+### Final Dataset
+
+After cleaning, the dataset was reduced to approximately **80,000 posts** across the three subreddits, retaining high-quality and meaningful entries for analysis.
+
+## Comments Data Cleaning
+
+### Initial Dataset
+
+The comments dataset initially contained over **76 million** entries, representing a vast array of user interactions on the three subreddits.
+
+### Cleaning Steps
+
+1. **Removing Empty Text:** Comments with removed or missing content (body = '[removed]') were excluded to focus on meaningful user responses.
+2. **Joining with Posts:** To ensure all comments were tied to a relevant post, we joined the comments dataframe with the cleaned posts dataframe, removing orphaned comments.
+3. **Filtering for Immediate Feedback:** Reddit is a platform known for its fast-paced interactions, especially in these subreddits. To capture this dynamic, we:
+
+* Created a top_level_comment variable (binary) to isolate comments directly responding to the original post.
+* Attempted to analyze deeper comment threads recursively (using methods like graphs/nodes in Pandas and PySpark), but computational limitations made this infeasible due to the dataset's size.
+
+4. **Time-Based Filtering:** A time_since_post variable was calculated, measuring the time in hours between a post's creation and its comments. Only comments made within 24 hours of a post were retained, reflecting the immediacy of feedback typical in these subreddits.
+
+### Final Dataset
+
+The final comments dataset was reduced to approximately **19 million** comments, representing meaningful, top-level feedback tied to posts with significant engagement. Each cleaning decision was made after carefully examining the data and guided by the unique dynamics of Reddit's feedback mechanisms.
+
+## External Data: Dear Abby
+
+To complement our Reddit analysis, we incorporated the **Dear Abby** dataset, sourced from [Kaggle](https://www.kaggle.com/datasets/thedevastator/american-anxieties-dear-abby-s-questions) and featured in The Pudding’s essay, [30 Years of American Anxieties](https://pudding.cool/2018/11/dearabby/). This dataset includes 20,000 questions submitted to the advice column from 1985 to 2017, offering a historical perspective on public concerns.
+
+Data Preparation
+	1.	Removed incomplete entries and standardized text formatting.
+	2.	Retained submissions within the 1985–2017 time frame.
+
+This dataset serves as a baseline for comparing traditional advice-seeking behavior with Reddit’s dynamic, real-time interactions, helping to explore how platform design and anonymity shape public concerns.
+
+
+
+
+
+# Comparing Engagement: Reddit vs. Dear Abby
+
+## Reddit Activity Across Subreddits
+
+Reddit’s immense popularity as a modern advice-seeking platform is evident in the posting trends across its subreddits. The bar chart below illustrates monthly post frequencies for AskReddit, AmItheAsshole, and AmIOverreacting from June 2023 to July 2024.
+
+
+![figure: Number of post per subreddits each month of the year](images/eda/monthly_posts_bar_chart.png) 
+
+```{python, echo: false}
+import pandas as pd
+data = pd.read_csv("images/eda/subreddit_date_range.csv")
+data
+```
+
+### Key Observations:
+
+1. **Dominance of AskReddit:**
+AskReddit consistently receives the highest number of posts, reflecting its broad appeal and diverse range of topics.
+2. **Steady Activity in AmItheAsshole:**
+AmItheAsshole exhibits robust activity, indicating strong engagement with moral and ethical dilemmas.
+3. **Emergence of AmIOverreacting:**
+AmIOverreacting shows relatively lower activity, as it is a newer subreddit established in late 2023. Its posting frequency has gradually increased, reflecting its growing user base.
+
+### Takeaway:
+Monthly activity on Reddit far exceeds that of Dear Abby, with individual subreddits, like AskReddit and AmItheAsshole, more than doubling the average number of monthly posts Dear Abby received.
+
+## Dear Abby: Trends Over Time
+
+The Dear Abby dataset provides a historical perspective, with 20,000 questions submitted from 1985 to 2017. The visualizations below highlight trends in posting volume and content characteristics over time.
+
+
+:::: {layout="[50, 50]"}
+
+::: {#first-column}
+![figure: Number of Posts per Year on Dear Abby](images/eda/dear_abby_new_1.png)
+:::
+::: {#second-column}
+![figure: Aggregated Number of Posts per Month from year 1985 to 2017 on Dear Abby](images/eda/dear_abby_new_2.png)
+:::
+::::
+
+:::: {layout="[50, 50]"}
+::: {#third-column}
+![figure: Average Number of Words per Post Each Year from year 1985 to 2017 on Dear Abby](images/eda/dear_abby_new_3.png)
+:::
+::: {#fourth-column}
+![figure: Average Number of Words per Post Each Month from year 1985 to 2017 on Dear Abby](images/eda/dear_abby_new_4.png)
+:::
+::::
+
+**The Top-Left Plot:** Number of Posts per Year
+This bar chart shows the annual number of posts. A significant peak is observed in 1985, followed by a decline and stabilization from the late 1980s to early 2000s. The number of posts begins to rise again in the 2000s, peaking in the late 2010s before dropping towards 2017. This trend may indicate shifts in popularity or submission practices over time.
+
+**The Top-Right Plot:** Aggregated Number of Posts per Month
+This bar chart highlights the monthly distribution of posts over the entire dataset. The counts are relatively even across the months, with a slight increase around June and July, possibly reflecting seasonal patterns or user behaviors during the summer.
+
+**The Bottom-Left Plot:** Average Number of Words per Post Each Year
+This line plot tracks the yearly average word count per post. From 1985 to 2000, the average word count fluctuates significantly but shows a decreasing trend overall. After 2000, there is a sharper decline, reaching lower averages in the 2010s. This trend might indicate a shift towards shorter, more concise posts over time.
+
+**The Bottom-Right Plot:** Average Number of Words per Post Each Month
+This line plot shows monthly variations in the average word count. The averages remain fairly consistent throughout most of the months but exhibit a noticeable peak in the later months, especially in December. This suggests that posts made at the end of the year tend to be longer, possibly influenced by holiday-related themes or reflective content.
+
+### Takeaway:
+Overall, the data reveals notable trends in the quantity and length of posts. While annual posting activity fluctuates, there is a gradual increase in submissions post-2000. Monthly trends indicate slight seasonal variations in posting volume and length. Over the years, posts appear to have become shorter, reflecting potential shifts in communication style or platform usage.
+
+## Summary: Reddit v. Dear Abby
+
+Both platforms highlight user-generated advice-seeking content, but the scale and dynamics differ drastically:
+
+* **Reddit’s Reach:** Individual subreddits like AskReddit and AmItheAsshole receive far more posts per month than Dear Abby at its peak, reflecting Reddit’s status as a dominant modern platform.
+* **Dear Abby’s Longevity:** Despite its smaller scale, Dear Abby provides a longitudinal view of public concerns over three decades, showcasing shifts in communication style and platform usage.
+* **Platform Evolution:** AmIOverreacting demonstrates the growth of niche communities on Reddit, highlighting its adaptability to emerging user needs, while Dear Abby reflects a more stable, traditional approach.
+
+This comparison underscores Reddit’s expansive role in advice-seeking today, surpassing traditional platforms in scale and immediacy.
+
+
+# Posting Patterns: Day and Hour Trends
+
+
+Heatmaps below illustrate posting activity across three subreddits—**AmIOverreacting**, **AmItheAsshole**, and **AskReddit**—broken down by day of the week and hour of the day. These visualizations reveal distinct patterns in user engagement, reflecting the unique dynamics and purposes of each subreddit.
+
+
+
+::: {.panel-tabset}
+
+## AmIOverreacting
+
+![Heatmap of subreddit "AmIOverreacting" Posts Count by Day of the Week and Hour](images/eda/AmIOverreacting_heatmap.png)
+
+## AskReddit
+
+![Heatmap of subreddit "AskReddit" Posts Count by Day of the Week and Hour](images/eda/AskReddit_heatmap.png)
+
+## AmItheAsshole
+
+![Heatmap of subreddit "AmItheAsshole" Posts Count by Day of the Week and Hour](images/eda/AmItheAsshole_heatmap.png)
+
+## Three Subreddits Combined 
+
+![Heatmap of Three Subreddits' Posts Count by Day of the Week and Hour](images/eda/overall_heatmap.png)
+
+:::
+
+The heatmaps showcase posting patterns across three subreddits: **AmIOverreacting**, **AmItheAsshole**, and **AskReddit**, based on the day of the week and hour of the day. **AskReddit** exhibits consistently high activity throughout the week, peaking during midweek afternoons and evenings, reflecting its broad audience and general appeal. **AmItheAsshole** demonstrates steady engagement, with higher post counts concentrated during evenings, likely when users are thinking profoundly, questioning their life choices, and desparate to seek moral judgments from strangers. **AmIOverreacting** shows lower activity overall, with mild peaks during late afternoons and evenings, indicating its smaller, niche audience. The distinct posting trends highlight the varying dynamics and user preferences among these subreddits, driven by their unique content focuses.
+
+
+# Exploring Post Virality Across Subreddits
+
+To understand what drives post virality, we created a new variable, **viral**, identifying posts that ranked in the top 10% for both **post score** and **number of comments** across all subreddits. The table below summarizes viral post statistics for **AmItheAsshole**, **AmIOverreacting**, and **AskReddit**:
+
+```{python, echo: false}
+import pandas as pd
+data = pd.read_csv("images/eda/viral_stats.csv")
+data
+```
+
+### Key Insights:
+
+* **AskReddit** has the largest community (49M members) and highest total posts (42,296), resulting in the most viral posts (3,274) and the highest viral percentage (7.74%).
+* Despite being the smallest subreddit, **AmIOverreacting** achieves 1.54 viral posts per 10k members, more than double the rate of AskReddit (0.67) and AmItheAsshole (0.65).
+* **AmItheAsshole** balances high engagement and a large user base, producing 1,434 viral posts (4.24% of its total posts).
+
+This analysis reveals differing engagement dynamics across subreddits. While AskReddit’s sheer size drives raw viral numbers, AmIOverreacting demonstrates exceptional virality relative to its small, focused community, suggesting that smaller subreddits can outperform larger ones in terms of engagement efficiency.
+
+# Distribution of Post Lengths by Subreddit
+
+The histograms below illustrate the distribution of post lengths (measured in number of characters) across the subreddits **AmIOverreacting**, **AmItheAsshole**, and **AskReddit**. These distributions provide insights into the varying dynamics and content styles of each community.
+
+
+
+::: {.panel-tabset}
+
+## AmIOverreacting
+
+![Distribution of Selftext Length: AmIOverreacting](images/eda/AmIOverreacting_selftext_length_distribution.png)
+
+## AmItheAsshole
+
+![Distribution of Selftext Length: AmItheAsshole](images/eda/AmItheAsshole_selftext_length_distribution.png)
+
+## AskReddit
+
+![Distribution of Selftext Length: AskReddit](images/eda/AskReddit_selftext_length_distribution.png)
+
+:::
+
+## Key Insights:
+
+1. **AmIOverreacting:**
+
+* The distribution is skewed right, with most posts under 3,000 characters.
+* This reflects its focus on concise, emotional queries, often aimed at validating users’ feelings.
+* Lower post counts compared to the other subreddits can be attributed to its status as a newer community.
+
+2. **AmItheAsshole:**
+
+* Posts exhibit a wider range of lengths, with a noticeable peak around 2,000 characters.
+* Users often provide detailed narratives to contextualize their moral dilemmas, which aligns with the subreddit’s focus on ethical judgment.
+
+
+3.  **AskReddit:**
+
+* A bimodal distribution emerges, with one peak at very short posts (under 100 characters) and another less noticable peak at longer, detailed posts.
+* This reflects the diverse nature of AskReddit, accommodating both concise questions and extensive discussions.
+
+## Popularity and Content Characteristics:
+
+* Despite AskReddit’s shorter posts, it maintains the highest percentage of viral posts among the subreddits, indicating that post popularity is not tied to length.
+* A closer examination of content reveals differing engagement dynamics. For example:
+  * **AmItheAsshole** posts often revolve around introspective queries about personal responsibility, leading to more reserved and non-explicit content.
+  * **AmIOverreacting** may include more emotionally charged or explicit posts, as users seek validation for situations they believe justify their reactions.
+
+# NSFW Content Analysis
+
+A breakdown of NSFW (Not Safe for Work) content further highlights these differences:
+
+```{python, echo: false}
+import pandas as pd
+data = pd.read_csv("images/eda/nsfw_stats.csv")
+data
+```
+
+* **AskReddit** has the highest proportion of NSFW posts, reflecting its broad range of content topics.
+* **AmItheAsshole** maintains the lowest NSFW percentage, aligning with its focus on introspective and ethical discussions.
+* **AmIOverreacting** includes more explicit content, likely driven by emotionally charged scenarios where users seek validation for potentially controversial reactions.
+* The anonymous nature of Reddit encourages users to share sensitive or explicit topics more freely, particularly in communities like AskReddit and AmIOverreacting.
+
+# Breaking Down Feedback: Responses on AmItheAsshole
+
+In contrast to **AskReddit**, the **AmItheAsshole** subreddit stands out for its structured feedback system, where comments are labeled with specific acronyms to indicate judgments on the original post. These labels range from agreement to disagreement, providing clarity and categorization in user responses:
+
+* **YTA:** You’re the Asshole
+* **YWBTA:** You Would Be the Asshole
+* **NTA:** Not the Asshole
+* **YWNBTA:** You Would Not Be the Asshole
+* **ESH:** Everyone Sucks Here
+* **NAH:** No A-holes Here
+* **INFO:** Not Enough Info
+
+## Response Patterns
+
+The radar chart below visualizes the distribution of these labels in responses to posts on AmItheAsshole.
+
+
+
+![figure: Radar chart of the reponse of posts in AmItheAsshole](images/eda/radar_chart.png){width=500px}
+
+## Key Insights:
+
+* The most frequent responses are **YTA** and **NTA**, indicating that audiences on this subreddit are highly decisive and assertive in their opinions.
+* This structured feedback system likely contributes to the subreddit’s popularity, as users seeking clarity or validation for their actions receive direct, categorical judgments.
+* The diversity of response labels, ranging from agreement to neutrality or disagreement, allows for nuanced discussions and reflects the community’s engagement with complex moral dilemmas.
+
+## Takeaway:
+The structured nature of feedback on AmItheAsshole fosters a unique environment for moral and ethical discussions, making it a go-to platform for users seeking unfiltered and assertive opinions on controversial topics.
+
+A similar labeling system is present in **AmIOverreacting**, which will be explored further in our machine learning section.
+
+# Viral Posts Examples
+
+The table below highlights the top ten viral posts from each subreddit, offering a glimpse into the types of dilemmas and discussions that resonate most with their respective communities. This selection provides valuable context for understanding subreddit themes, which will be explored in greater depth through topic modeling on the NLP page.
+
+```{python, echo: false}
+import pandas as pd
+pd.set_option('display.max_colwidth', None)
+data = pd.read_csv("images/eda/top_posts.csv")
+data
+```
+
+
+
+# Conclusion
+
+Our exploratory data analysis reveals distinct patterns in user engagement, content dynamics, and subreddit-specific behaviors across **AskReddit**, **AmItheAsshole**, and **AmIOverreacting**. While **AskReddit** dominates in scale and reach, **AmItheAsshole** thrives on structured feedback for moral dilemmas, and **AmIOverreacting** demonstrates the unique appeal of niche communities. These insights provide a foundation for further analysis, including topic modeling and sentiment analysis, which will deepen our understanding of the themes, tone, and judgments that drive these platforms.

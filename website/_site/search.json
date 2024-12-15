@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "What should a mother do if she discovers her son is dating her best friend? What should a husband do when he realizes his marriage is failing after decades, yet feels too embarrassed to tell friends and family he wants a divorce? What about the wife who walks in on her husband of 23 years having an affair with her brother? And what of the more mundane, everyday dilemmas? Where can people turn when they need objective opinions on deeply personal issues, beyond what close friends and family might offer?\nFor more than half a century, people have struggled with all kinds of concerns and questions about their marriages, relationships, friendships, and even themselves. The advent of anonymous posting and virtual communities, such as Reddit, has given individuals a platform to share their problems with the world and receive advice from anyone willing to listen.\nBefore Reddit (founded in 2005) and the rise of online communities, one of the most popular ways to seek public advice was through newspaper advice columns. For over half a century, Dear Abby—America’s longest-running advice column, first written by Pauline Phillips (under the pseudonym Abigail van Buren) and later by her daughter Jeanne—offered counsel to thousands of troubled readers. At its peak, the column was syndicated in more than 1,200 newspapers, providing an unparalleled glimpse into the concerns dominating American life. It has been continuously in print since 1956, serving as a unique cultural touchstone.\nOn Reddit, users find solace in various advice-focused subreddits, each catering to different types of personal quandaries.\n\n\n\nfigure: headline of r/AmITheAsshole\n\n\nr/AmITheAsshole is a space where users can share morally complex situations and ask for judgment on whether they were in the wrong.\n\n\n\nfigure: headline of r/AskReddit\n\n\nr/AskReddit serves as a general forum where individuals can pose open-ended questions to the broader Reddit community, often about life challenges and social dilemmas.\n\n\n\nfigure: headline of r/AmIOverreacting\n\n\nMeanwhile, r/AmIOverreacting provides a place for people to seek validation and perspective on whether their emotional responses are justified.\nBy examining advice-seeking posts on Reddit and questions from “Dear Abby” columns, we have an opportunity to explore the evolving landscape of American worries from 1985 to 2023. Using Exploratory Data Analysis (EDA), Natural Language Processing (NLP), and Machine Learning (ML), this project aims to uncover trends in the anxieties that have troubled Americans over nearly four decades, generating powerful insights in a clear and accessible manner.\n\nThe Project\nOur exploration spans various appraoches, SUMMARIZE EDA AND NLP HERE:\n\n\nProject Goals\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "NLP.html",
+    "href": "NLP.html",
+    "title": "NLP",
+    "section": "",
+    "text": "NLP\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "EDA.html#external-data-ask-abby",
+    "href": "EDA.html#external-data-ask-abby",
+    "title": "Exploratory Data Analysis",
+    "section": "External Data: Ask Abby",
+    "text": "External Data: Ask Abby\nThis dataset is a collection of 20,000 questions addressed to the advice columnist Dear Abby, providing valuable insights into American anxieties and concerns from the mid-1980s to 2017. It was used in The Pudding essay titled 30 Years of American Anxieties: What 20,000 letters to an advice columnist tell us about what—and who—concerns us most, published in November 2018.\nThe distribution of the number of questions submitted to the “Dear Abby” column over the years shows that, apart from 1985, which recorded over 1,000 posts, the number of posts in subsequent years generally ranges between 400 and 800 annually.\n\nDownload Image\n\n\n\nSource Code\n\n\n\n\n\nfigure: Number of questions posted on “Dear Abby” column each year\n\n\nAdditionally, when we examine the number of posts aggregated by month across all years, the volume of posts remains relatively consistent each month. This suggests that there is no specific time of year when people are notably more likely to seek advice or report struggles.\n\nDownload Image\n\n\n\nSource Code\n\n\n\n\n\nfigure: Number of questions posted on “Dear Abby” column each month across all years"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Project Team 27",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "code_data.html",
+    "href": "code_data.html",
+    "title": "Project Team 27",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "authors.html",
+    "href": "authors.html",
+    "title": "Project Team 27",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "secondary/references.html",
+    "href": "secondary/references.html",
+    "title": "References",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "secondary/authors.html",
+    "href": "secondary/authors.html",
+    "title": "Authors",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "secondary/code_data.html",
+    "href": "secondary/code_data.html",
+    "title": "Code and Data",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "EDA.html#external-data-dear-abbys",
+    "href": "EDA.html#external-data-dear-abbys",
+    "title": "Exploratory Data Analysis",
+    "section": "External Data: Dear Abby’s",
+    "text": "External Data: Dear Abby’s\nThis dataset is a collection of 20,000 questions addressed to the advice columnist “Dear Abby”, which implemented by The Pudding essay titled 30 Years of American Anxieties: What 20,000 letters to an advice columnist tell us about what—and who—concerns us most, published in November 2018. The dataset provides valuable insights into American anxieties and concerns from the mid-1980s to 2017, as stated in the Introduction section.\n\nTime distribution of the questions\nThe distribution of the number of questions submitted to the “Dear Abby” column over the years shows that, apart from 1985, which recorded over 1,000 posts, the number of posts in subsequent years generally ranges between 400 and 800 annually.\n\nDownload Image\n\n\n\nSource Code\n\n\n\n\n\nfigure: Number of questions posted on “Dear Abby” column each year\n\n\nAdditionally, when we examine the number of posts aggregated by month across all years, the volume of posts remains relatively consistent each month. This suggests that there is no specific time of year when people are notably more likely to seek advice or report struggles.\n\nDownload Image\n\n\n\nSource Code\n\n\n\n\n\nfigure: Number of questions posted on “Dear Abby” column each month across all years\n\n\n\n\nTopic Analysis\nSince the external dataset contains a wider range of time when the questions were raised, the change of the topics of the questions is worth noting itself, before we merge the external data with the reddit dataset. But first, it’s necessary to get a sense of how many topics are most discussed by people across all years. The visualization below used gensim and pyLDAvis to visualize the topics of all the questions posted on Dear Abby’s from year 1985 to 2017."
+  }
+]

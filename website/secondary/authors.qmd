@@ -1,0 +1,12 @@
+---
+title: "Authors"
+sidebar: false
+toc: false
+format:
+  html:
+    self-contained: true
+---
+
+This project is made possible by the hard work of JaeHo Bahng, Kang Liu, Billy McGloin, & Zining Wang!
+
+![Thanks for reading! Image created using DALL-E by OpenAI.](../images/about/thanks.png)

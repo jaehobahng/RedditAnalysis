@@ -1,0 +1,163 @@
+---
+format:
+  html:
+    html-sanitize: false
+
+---
+
+# EDA External Data
+
+# Introduction
+
+
+## External Data: [Dear Abby's](https://www.kaggle.com/datasets/thedevastator/american-anxieties-dear-abby-s-questions)
+
+This dataset is a collection of 20,000 questions addressed to the advice columnist "Dear Abby", which implemented by The Pudding essay titled [30 Years of American Anxieties: What 20,000 letters to an advice columnist tell us about what—and who—concerns us most](https://pudding.cool/2018/11/dearabby/),  published in November 2018. The dataset provides valuable insights into American anxieties and concerns from the mid-1980s to 2017, as stated in the Introduction section. 
+
+### Time distribution of the questions
+
+The distribution of the number of questions submitted to the "Dear Abby" column over the years shows that, apart from 1985, which recorded over 1,000 posts, the number of posts in subsequent years generally ranges between 400 and 800 annually.
+
+<div style="text-align: right;">
+  <button onclick="downloadImage()" class="small-button">Download Image</button>
+</div>
+
+<script>
+function downloadImage() {
+  const link = document.createElement('a');
+  link.href = 'images/eda/dear_abby_p1.png';
+  link.download = 'dear_abby_plot.png';
+  link.click();
+}
+</script>
+
+<div style="text-align: right;">
+  <button onclick="sourceCode()" class="small-button">Source Code</button>
+</div>
+
+<script>
+function sourceCode() {
+  const link = document.createElement('a');
+  link.href = "https://github.com/gu-dsan6000/fall-2024-project-team-27/blob/main/code/dear_abby_eda.ipynb";
+  link.target = "_blank";  // Opens the link in a new tab
+  link.click();
+}
+</script>
+
+![figure: Number of questions posted on "Dear Abby" column each year](images/eda/dear_abby_p1.png) 
+
+
+
+Additionally, when we examine the number of posts aggregated by month across all years, the volume of posts remains relatively consistent each month. This suggests that there is no specific time of year when people are notably more likely to seek advice or report struggles.
+
+<div style="text-align: right;">
+  <button onclick="downloadImage()" class="small-button">Download Image</button>
+</div>
+
+<script>
+function downloadImage() {
+  const link = document.createElement('a');
+  link.href = 'images/eda/dear_abby_p2.png';
+  link.download = 'dear_abby_plot.png';
+  link.click();
+}
+</script>
+
+<div style="text-align: right;">
+  <button onclick="sourceCode()" class="small-button">Source Code</button>
+</div>
+
+<script>
+function sourceCode() {
+  const link = document.createElement('a');
+  link.href = "https://github.com/gu-dsan6000/fall-2024-project-team-27/blob/main/code/dear_abby_eda.ipynb";
+  link.target = "_blank";  // Opens the link in a new tab
+  link.click();
+}
+</script>
+![figure: Number of questions posted on "Dear Abby" column each month across all years](images/eda/dear_abby_p2.png)
+
+### Topic Analysis
+
+Since the external dataset spans a broader timeline, capturing questions from a wide range of years, it is important to first examine the evolution of topics over time before merging it with the Reddit dataset. To clearly showcase these shifts in subject matter, we aggregated the questions into **5-year intervals**, resulting in a total of **seven distinct time periods**. By running **Latent Dirichlet Allocation (LDA)**, a widely used topic modeling technique, we were able to extract the dominant topics from each interval. Below, we present word clouds for each interval, visualizing the most frequently occurring words within each identified topic and highlighting the changes in public concerns over time. 
+
+<div style="text-align: right;">
+  <button onclick="downloadImages()" class="small-button">Download Images</button>
+</div>
+
+<script>
+function downloadImages() {
+  const images = [
+    { href: 'images/eda/wordcloud1.png', filename: 'wordcloud1.png' },
+    { href: 'images/eda/wordcloud2.png', filename: 'wordcloud2.png' },
+    { href: 'images/eda/wordcloud3.png', filename: 'wordcloud3.png' }, 
+    { href: 'images/eda/wordcloud4.png', filename: 'wordcloud4.png' },
+    { href: 'images/eda/wordcloud5.png', filename: 'wordcloud5.png' },
+    { href: 'images/eda/wordcloud6.png', filename: 'wordcloud6.png' },
+    { href: 'images/eda/wordcloud7.png', filename: 'wordcloud7.png' }
+  ];
+
+  images.forEach(image => {
+    const link = document.createElement('a');
+    link.href = image.href;
+    link.download = image.filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+}
+</script>
+
+<div style="text-align: right;">
+  <button onclick="sourceCode()" class="small-button">Source Code</button>
+</div>
+
+<script>
+function sourceCode() {
+  const link = document.createElement('a');
+  link.href = "https://github.com/gu-dsan6000/fall-2024-project-team-27/blob/main/code/dear_abby_eda.ipynb";
+  link.target = "_blank";  // Opens the link in a new tab
+  link.click();
+}
+</script>
+
+:::: {layout="[ 33, 33, 33 ]"}
+
+::: {#first-column}
+![Figure: Year 1985-1989](images/eda/wordcloud1.png)
+:::
+
+::: {#second-column}
+![Figure: Year 1990-1994](images/eda/wordcloud2.png)
+:::
+
+::: {#third-column}
+![Figure: Year 1995-1999](images/eda/wordcloud3.png)
+:::
+
+:::: 
+
+:::: {layout="[ 25, 25, 25, 25 ]"}
+
+::: {#first-column}
+![Figure: Year 2000-2004](images/eda/wordcloud4.png)
+:::
+
+::: {#second-column}
+![Figure: Year 2005-2009](images/eda/wordcloud5.png)
+:::
+
+::: {#third-column}
+![Figure: Year 2010-2014](images/eda/wordcloud6.png)
+:::
+
+::: {#fourth-column}
+![Figure: Year 2015-2017](images/eda/wordcloud7.png)
+:::
+
+:::: 
+
+Over the years, the topics have shifted from discussions about family dynamics in the 1980s and 1990s to broader social and relationship issues in the 2000s and beyond. Early intervals (1985-1994) focused heavily on family roles, marriage, and parenting, reflecting traditional concerns about domestic life. By the late 1990s, themes expanded to include advice-seeking on personal problems, health, and social interactions. In the early 2000s, there was a noticeable shift towards discussions of relationships beyond the family, including friendships and social contexts. This period marked the beginning of a broader exploration of social issues.
+
+From 2005 onwards, discussions became more nuanced, incorporating themes of marriage, modern relationship dynamics, and parenting challenges. By 2010, there was a strong focus on parenting and broader social interactions, with increased mentions of schools and social advice. The most recent years (2015-2017) show a significant shift towards personal aspirations, modern relationship struggles, and societal expectations, highlighting themes like desire, balance in relationships, and social pressures. Overall, the topics reflect an evolution from family-focused issues to a more diverse set of social and personal concerns, mirroring changing societal trends and expectations. 
+
