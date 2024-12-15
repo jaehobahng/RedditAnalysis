@@ -12,11 +12,7 @@ website:
       - text: Project
         href: index.qmd
       - text: Code and Data
-        href: https://github.com/gu-dsan6000/fall-2024-project-team-27
-      - text: Authors
-        href: secondary/authors.qmd       
-      - text: References
-        href: secondary/references.qmd
+        href: https://github.com/jaehobahng/RedditAnalysis
   
   page-footer:
     left: |
